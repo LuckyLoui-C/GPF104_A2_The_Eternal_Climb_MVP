@@ -14,7 +14,7 @@ public class GameCartridge : MonoBehaviour
     //                                     // May be easier to just hard code where these spawn
     // in the scene/in their own cs script
 
-    /*    public AudioSource gameMusic; // Game music
+    /*  public AudioSource gameMusic; // Game music
         public AudioSource gameOverSound; // Game sound for game over
         public AudioSource hitSound; // Sounds for character
         public AudioSource deathSound;
@@ -49,9 +49,9 @@ public class GameCartridge : MonoBehaviour
         }
     }
     // Function to handle adding points. Can add points when enemy is killed/collectibles etc...
-    public void AddPoints(int points)
+/*    public void  (int points)
     {
         currentScore += points;
         scoreText.text = "Score: " + currentScore;
-    }
+    }*/
 }
