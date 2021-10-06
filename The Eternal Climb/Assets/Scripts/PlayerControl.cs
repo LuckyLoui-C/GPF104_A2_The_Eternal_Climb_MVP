@@ -13,15 +13,52 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
+
+    private GameCartridge gameManager; // Game cartridge (manager) referenced in the scene
+
+    public Vector2 movementDirection; // Direction the player is moving towards
+
+    public int playerHealth; // Health remaining, int for simple health bar
+    public bool playerIsAlive;
+    public bool playerCanMove;
+    public float movementSpeed;
+    public float rotationDirection; // Direction the player is facing
+    public string playerName;
+
+    // Assign variabls before starting game
+    public void Awake()
+    {
+        playerIsAlive = true;
+        playerCanMove = false;
+        rotationDirection = 0.0f;
+        movementSpeed = 0.0f;
+        movementDirection = Vector2.right;
+    }
+
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerCanMove = true;
+        gameManager = GameObject.Find("GameCartridge").GetComponent<GameCartridge>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (playerIsAlive && playerCanMove)
+        {
+            // Movement code
+            // transform.Translate(movementDirection * Time.deltaTime * movementSpeed);
+            // Directional input from keyboard
+        }
+    }
+    // Collision - either from weapon or if player touches enemy or spikes or something
+    // Player collides with "Health" or "Power Up" also handled here?
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up);
+
     }
 }
