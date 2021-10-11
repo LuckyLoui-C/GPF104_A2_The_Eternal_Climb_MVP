@@ -11,7 +11,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControl : MonoBehaviour
+public class CharacterController2D : MonoBehaviour
 {
 
     private GameCartridge gameManager; // Game cartridge (manager) referenced in the scene
@@ -47,12 +47,7 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerIsAlive && playerCanMove)
-        {
-            // Movement code
-            // transform.Translate(movementDirection * Time.deltaTime * movementSpeed);
-            // Directional input from keyboard
-        }
+
     }
     // Collision - either from weapon or if player touches enemy or spikes or something
     // Player collides with "Health" or "Power Up" also handled here?
