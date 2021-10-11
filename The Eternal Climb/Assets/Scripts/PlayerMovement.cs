@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         // Move the player character
-        controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
+        //controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
         jump = false;
     }
 }
