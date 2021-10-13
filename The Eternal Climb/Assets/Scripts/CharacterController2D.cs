@@ -25,7 +25,7 @@ public class CharacterController2D : MonoBehaviour
     public float rotationDirection; // Direction the player is facing
     public string playerName;
 
-    // Assign variabls before starting game
+    // Assign variables before starting game
     public void Awake()
     {
         playerIsAlive = true;

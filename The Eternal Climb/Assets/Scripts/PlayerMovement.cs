@@ -4,42 +4,78 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public CharacterController2D controller;
-    public float runSpeed = 40.0f;
+    private Rigidbody2D playerRb;
 
-    float horizontalMove = 0.0f;
-    bool jump = false;
-    bool crouch = false;
+    public LayerMask groundLayerMask;
+    public LayerMask wallLayerMask;
 
-    void start()
+    public Transform groundPointA;
+    public Transform groundPointB;
+    public Transform wallPointHolder;
+    public Transform wallPointA;
+    public Transform wallPointB;
+
+    public float moveSpeed;
+    public float jumpForce;
+
+    private int currentJumpNum;
+    public int maxJumpNum;
+
+    private bool jumpAxisInUse;
+    private bool isGrounded;
+    private bool isTouchingWall;
+
+
+    private void Awake()
     {
+        // Initialization of references to components
+        playerRb = this.GetComponent<Rigidbody2D>();
 
+        // Initialization of variables
     }
-
-    void update()
+    private void Update()
     {
-        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+        // Horizontal input and movement
+        float movement = Input.GetAxisRaw("Horizontal") * moveSpeed;
+        playerRb.velocity = new Vector3(movement, playerRb.velocity.y,0);
 
-        if (Input.GetButtonDown("Jump"))
+        if(Input.GetAxisRaw("Horizontal") == -1)
         {
-            jump = true;
+            wallPointHolder.rotation = Quaternion.Euler(0,0,0);
         }
-        if (Input.GetButtonDown("Crouch"))
+        if (Input.GetAxisRaw("Horizontal") == 1)
         {
-            crouch = true;
-        }
-        else if (Input.GetButtonUp("Crouch"))
-        {
-            crouch = false;
+            wallPointHolder.rotation = Quaternion.Euler(0, 0, 180);
         }
 
+        // Convert the constant hit register of GetAxis to a one hit register and call a jump on register
+        if (Input.GetAxisRaw("Jump") != 0)
+        {
+            if (jumpAxisInUse == false)
+            {
+                if(currentJumpNum > 0)
+                {
+                    playerRb.velocity = new Vector3(playerRb.velocity.x, jumpForce, 0);
+                    currentJumpNum--;
+                }
+                jumpAxisInUse = true;
+            }
+        }
+        if (Input.GetAxisRaw("Jump") == 0)
+        {
+            jumpAxisInUse = false;
+        }
 
-    }
+        // Check if touching the things
+        isGrounded = Physics2D.OverlapArea(groundPointA.position, groundPointB.position, groundLayerMask);
+        isTouchingWall = Physics2D.OverlapArea(wallPointA.position, wallPointB.position, wallLayerMask);
 
-    void FixedUpdate()
-    {
-        // Move the player character
-        //controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
-        jump = false;
+        // Reset the jumps every time the player is grounded
+        if (isGrounded && currentJumpNum != maxJumpNum)
+        {
+            currentJumpNum = maxJumpNum;
+        }
+
+
     }
 }
