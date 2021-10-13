@@ -37,8 +37,9 @@ public class GameCartridge : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
-            enemy1.isAlive = false;
-            addPoints(1);
+            enemy1.isAlive = false; // Will lead to death animation and destroy enemy
+            addPoints(1); // Add point(s) to the current score
+            countdownTimer.timeRemaining++; // Add 1 second to the countdown timer
         }
         if (Input.GetKeyDown(KeyCode.Space))
             countdownTimer.timerIsRunning = false;
