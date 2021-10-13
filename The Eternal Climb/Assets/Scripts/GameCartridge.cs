@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class GameCartridge : MonoBehaviour
 {
     public CountdownTimer countdownTimer;
+    public Enemy enemy1;
 
     public const float MAX_TIME = 60.0f; // Max amount of time available to play, doesn't change as can't get more than max time by killing enemies
     public AudioSource gameMusic; // Game music
@@ -29,17 +30,23 @@ public class GameCartridge : MonoBehaviour
         isGameRunning = true;
         //scoreText.text = "Score: " + currentScore;
         gameMusic.Play(); // Play the scene music
-        countdownTimer = GameObject.Find("Timer").GetComponent<CountdownTimer>();
     }
+
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            enemy1.isAlive = false;
+            addPoints(1);
+        }
         if (Input.GetKeyDown(KeyCode.Space))
             countdownTimer.timerIsRunning = false;
 
         if (!isGameRunning) // There migh be an easier way/better way to do this! not sure
             gameMusic.Stop();
     }
+
     // Function to handle adding points. Can add points when enemy is killed/collectibles etc...
     public void addPoints(int points)
     {
