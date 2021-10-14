@@ -492,20 +492,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96d57220a67910440b3b2e526b7efa86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  setMoveSpeed: 6
-  jumpForce: 5
-  fallMultiplier: 3
-  smallJumpModifier: 2.5
-  jumpBoxPosY: 0.25
-  jumpBoxHeight: 0.08
-  jumpBoxWidth: 0.38
-  maxJumpNum: 1
+  moveSpeed: 5
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 64
+  jumpForce: 5
+  jumpBuffer: 0.1
+  fallMultiplier: 3
+  smallJumpModifier: 2.5
+  jumpBoxPosY: 0.25
+  jumpBoxHeight: 0.03
+  jumpBoxWidth: 0.38
+  maxJumpNum: 1
   wallLayerMask:
     serializedVersion: 2
     m_Bits: 128
+  wallSlideSpeed: 6
+  wallBoxPosY: 0
+  wallBoxHeight: 0.5
+  wallBoxWidth: 0.42
 --- !u!61 &1645493465
 BoxCollider2D:
   m_ObjectHideFlags: 0

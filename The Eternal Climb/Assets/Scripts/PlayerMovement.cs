@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Component References")]
     private Rigidbody2D playerRb;
-
 
     [Header("Movement Settings")]
     public float moveSpeed; // The players moving speed which is set in the inspector
@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundLayerMask; // A layer of objects that are classed as the ground (the player can't jump if standing on something not in this layer)
 
     public float jumpForce; // How strong the force the force applied when jumping should be
+    public float jumpBuffer; // How long after the jump key is pressed should it register a jump midair
     public float fallMultiplier; // How quickly the player should fall
     public float smallJumpModifier; // The stronger this variable, the smaller a jump when the user just taps the jump key
     public float jumpBoxPosY; // The y position of the jump OverlapBox
@@ -23,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     public int maxJumpNum; // How many air jumps the player is set to have (cannot be zero)
     private int currentJumpNum; // How many air jumps the player has left
 
+    private bool jumpOnGrounded;
     private bool jumpRequested; // Has the player pushed the jump input
     private bool jumpAxisInUse; // This variable is used to convert a constant input to a toggle input
     private bool isGrounded; // Is the player touching the ground
@@ -38,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
     public float wallBoxWidth; // The width of the wall OverlapBox
 
     private bool isTouchingWall; // Is the player touching a wall
+
     private void Awake()
     {
         // Initialization of references to components
@@ -50,16 +53,20 @@ public class PlayerMovement : MonoBehaviour
         float movement = Input.GetAxisRaw("Horizontal") * moveSpeed;
         playerRb.velocity = new Vector3(movement, playerRb.velocity.y, 0);
 
-        // Converts the constant input of GetAxisRaw to a toggle and requests a jump (which happens in FixedUpdate())
+        // Converts the constant input of GetAxisRaw to a toggle and requests a jump (which is received in FixedUpdate())
         if (Input.GetAxisRaw("Jump") != 0)
         {
             if (jumpAxisInUse == false)
             {
-                if (currentJumpNum > 0)
+                jumpAxisInUse = true;
+                if(!isGrounded && currentJumpNum <= 0)
+                {
+                    StartCoroutine(DelayedJump());
+                }
+                else if (currentJumpNum > 0)
                 {
                     jumpRequested = true;
                 }
-                jumpAxisInUse = true;
             }
         }
         if (Input.GetAxisRaw("Jump") == 0)
@@ -75,6 +82,12 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded && currentJumpNum != maxJumpNum)
         {
             currentJumpNum = maxJumpNum;
+        }
+
+        // Jump if the jump key was pushed while not grounded and the player became grounded within the buffer time
+        if(jumpOnGrounded && isGrounded)
+        {
+            jumpRequested = true;
         }
     }
 
@@ -121,6 +134,14 @@ public class PlayerMovement : MonoBehaviour
                 playerRb.gravityScale = 1;
             }
         }
-        
+    }
+
+    // Allows for the jump button to be pressed while not grounded and still jump when grounded within a small period of time
+    // (Purely cause it makes the player feel easier to control)
+    IEnumerator DelayedJump()
+    {
+        jumpOnGrounded = true;
+        yield return new WaitForSeconds(jumpBuffer);
+        jumpOnGrounded = false;
     }
 }
