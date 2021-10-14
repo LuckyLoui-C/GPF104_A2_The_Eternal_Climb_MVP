@@ -31,12 +31,13 @@ public class PlayerMovement : MonoBehaviour
     [Header("Wall Jumping Settings")]
     public LayerMask wallLayerMask; // A layer of objects that the player can wall jump off of and slide down (the player can't interact with a wall not in this layer)
 
-    private bool isTouchingWall; // Is the player touching a wall
+    public float wallSlideSpeed; // How slowly does the player slide down a wall
 
     public float wallBoxPosY; // The y position of the wall OverlapBox
     public float wallBoxHeight; // The height of the wall OverlapBox
     public float wallBoxWidth; // The width of the wall OverlapBox
 
+    private bool isTouchingWall; // Is the player touching a wall
     private void Awake()
     {
         // Initialization of references to components
@@ -101,7 +102,8 @@ public class PlayerMovement : MonoBehaviour
         // If the player is moving into a wall midair, they slide down the wall slower
         if(isTouchingWall && Input.GetAxisRaw("Horizontal") != 0 && playerRb.velocity.y < 0)
         {
-            playerRb.gravityScale = 0.2f;
+            playerRb.velocity = new Vector2(playerRb.velocity.x,0);
+            playerRb.gravityScale = wallSlideSpeed;
         }
         // A gravity modifier is applied to the player if they are falling, or if they want to perform a smaller jump by only pressing the jump button
         else
