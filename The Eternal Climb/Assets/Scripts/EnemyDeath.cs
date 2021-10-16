@@ -5,8 +5,8 @@ using UnityEngine;
 public class EnemyDeath : MonoBehaviour
 {
     private Rigidbody2D enemyRb;
-    private BoxCollider2D enemyCollider;
-    private SpriteRenderer spriteRenderer;
+    private BoxCollider2D enemyCollider; // Prevent collisions after enemy death
+    private SpriteRenderer spriteRenderer; // Change colour of sprite
 
     private void Start()
     {
@@ -19,11 +19,9 @@ public class EnemyDeath : MonoBehaviour
     {
         if (collision.GetComponent<PlayerMovement>())
         {
-            enemyCollider.enabled = false;
-            spriteRenderer.color = Color.green;
-            enemyRb.gravityScale = 2.0f;
+            enemyCollider.enabled = false; // No longer collides with player (or weapon)
+            spriteRenderer.color = Color.black; // Signify death
+            enemyRb.gravityScale = 3.0f; // Allow dead enemy to fall off screen
         }
     }
-
-
 }

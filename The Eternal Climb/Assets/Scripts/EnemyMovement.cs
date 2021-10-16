@@ -7,9 +7,8 @@ public class EnemyMovement : MonoBehaviour
     private Rigidbody2D enemyRb;
 
     [SerializeField] private float moveSpeed; // Enemy's speed
-    private float xDirection;
-    private float movement;
-    private bool faceRight = false;
+    private float xDirection; // Left or right movement direction
+    private float movement; // 
 
     // Start is called before the first frame update
     void Start()
