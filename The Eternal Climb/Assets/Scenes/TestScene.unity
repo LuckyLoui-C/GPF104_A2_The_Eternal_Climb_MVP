@@ -248,7 +248,7 @@ GameObject:
   - component: {fileID: 532252725}
   - component: {fileID: 532252724}
   m_Layer: 0
-  m_Name: Item (1)
+  m_Name: Speed Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -267,9 +267,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   countdownTimer: {fileID: 2047770954}
-  speedMultiplier: 1
-  timeAdd: 50
+  timeAdd: 0
   addHealth: 0
+  speedMultiplier: 1.4
+  duration: 5
 --- !u!58 &532252725
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -679,7 +680,7 @@ GameObject:
   - component: {fileID: 1254142428}
   - component: {fileID: 1254142427}
   m_Layer: 0
-  m_Name: Item
+  m_Name: Add Time Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -698,9 +699,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   countdownTimer: {fileID: 2047770954}
-  speedMultiplier: 1.4
   timeAdd: 5
   addHealth: 0
+  speedMultiplier: 1
+  duration: 0
 --- !u!58 &1254142428
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1191,7 +1193,7 @@ GameObject:
   - component: {fileID: 1978491925}
   - component: {fileID: 1978491924}
   m_Layer: 0
-  m_Name: Item (2)
+  m_Name: Add Health Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1210,9 +1212,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   countdownTimer: {fileID: 2047770954}
+  timeAdd: 0
+  addHealth: 1
   speedMultiplier: 1
-  timeAdd: 5
-  addHealth: 0
+  duration: 0
 --- !u!58 &1978491925
 CircleCollider2D:
   m_ObjectHideFlags: 0
