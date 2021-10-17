@@ -118,7 +118,7 @@ public class PlayerMovement : MonoBehaviour
             playerRb.velocity = new Vector2(playerRb.velocity.x,0);
             playerRb.gravityScale = wallSlideSpeed;
         }
-        // A gravity modifier is applied to the player if they are falling, or if they want to perform a smaller jump by only pressing the jump button
+        // A gravity modifier is applied to the player if they are falling, or if they want to perform a smaller jump by only pressing the jump button quickly
         else
         {
             if (playerRb.velocity.y < 0)
