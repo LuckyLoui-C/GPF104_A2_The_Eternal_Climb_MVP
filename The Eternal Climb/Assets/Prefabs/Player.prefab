@@ -178,7 +178,7 @@ MonoBehaviour:
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  jumpForce: 5
+  jumpForce: 6
   jumpBuffer: 0.1
   fallMultiplier: 3
   smallJumpModifier: 2.5
