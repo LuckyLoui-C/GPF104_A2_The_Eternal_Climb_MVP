@@ -6,7 +6,7 @@ public class EnemyMovement : MonoBehaviour
 {
     private Rigidbody2D enemyRb;
 
-    [SerializeField] private float moveSpeed; // Enemy's speed
+    public float moveSpeed; // Enemy's speed
     private float xDirection; // Left or right movement direction
     private float movement; // 
 
@@ -15,11 +15,10 @@ public class EnemyMovement : MonoBehaviour
     {
         enemyRb = GetComponent<Rigidbody2D>();
         xDirection = -1.0f;
-        moveSpeed = 2.0f;
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.GetComponent<Wall>()) // If he hit that wall, spin around and walk the other way
+        if (other.CompareTag("PlatformEdge")) // If he hit that wall, spin around and walk the other way
         {
             xDirection *= -1.0f;
         }
