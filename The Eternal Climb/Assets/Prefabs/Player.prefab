@@ -205,7 +205,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d90bb693cffd474db0b4d3d3ccbc6e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
+  otherPlayerCollider: {fileID: 591731400739602802}
+  health: 3
 --- !u!114 &33735406142791398
 MonoBehaviour:
   m_ObjectHideFlags: 0
