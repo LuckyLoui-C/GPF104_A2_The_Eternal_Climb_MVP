@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 8a8575527063ba542a42689d41939c46, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -219,3 +219,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eac7a1cad74432242a2231d75663d8c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackKey: 32
+  pauseBefore: 0.1
+  cooldownAfter: 0.3
+  hitmarkerTime: 0.1
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  hitboxPosX: 0.46
+  hitboxHeight: 0.2
+  hitboxWidth: 1
+  playerRenderer: {fileID: 591731400739602815}

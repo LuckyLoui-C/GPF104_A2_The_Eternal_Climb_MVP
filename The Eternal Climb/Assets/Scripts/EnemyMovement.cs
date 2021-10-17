@@ -18,7 +18,7 @@ public class EnemyMovement : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("PlatformEdge")) // If he hit that wall, spin around and walk the other way
+        if (other.CompareTag("PlatformEdge") || other.CompareTag("Wall")) // If he hit that wall, spin around and walk the other way
         {
             xDirection *= -1.0f;
         }

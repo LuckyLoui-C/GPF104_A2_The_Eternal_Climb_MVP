@@ -47,7 +47,7 @@ public class EnemyBehaviour : MonoBehaviour
         isAttacking = false;
     }
 
-    void Die()
+    public void Die()
     {
         canAttack = false;
         enemyCollider.enabled = false; // No longer collides with player (or weapon)
