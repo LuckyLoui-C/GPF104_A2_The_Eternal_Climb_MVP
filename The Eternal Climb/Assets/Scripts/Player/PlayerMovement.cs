@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpBoxWidth; // The width of the jump OverlapBox
 
     public int maxJumpNum; // How many air jumps the player is set to have (cannot be zero)
-    private int currentJumpNum; // How many air jumps the player has left
+    public int currentJumpNum; // How many air jumps the player has left
 
     private bool jumpOnGrounded;
     private bool jumpRequested; // Has the player pushed the jump input
@@ -87,6 +87,7 @@ public class PlayerMovement : MonoBehaviour
         // Jump if the jump key was pushed while not grounded and the player became grounded within the buffer time
         if(jumpOnGrounded && isGrounded)
         {
+            currentJumpNum = maxJumpNum;
             jumpRequested = true;
         }
     }
@@ -106,7 +107,9 @@ public class PlayerMovement : MonoBehaviour
         // Jump: Resets the y velocity of the player before launching them into the air
         if(jumpRequested)
         {
-            currentJumpNum--;
+            if(!isGrounded && !jumpOnGrounded) 
+                currentJumpNum--;
+            jumpOnGrounded = false;
             playerRb.velocity = new Vector3(playerRb.velocity.x, 0, 0);
             playerRb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             jumpRequested = false;
