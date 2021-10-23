@@ -664,7 +664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   countdownTimer: {fileID: 789557304}
-  playerHealth: {fileID: 0}
+  playerHealth: {fileID: 1184187823}
   timeAdd: 5
   addHealth: 0
   speedMultiplier: 1
@@ -3491,7 +3491,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   countdownTimer: {fileID: 789557304}
-  playerHealth: {fileID: 0}
+  playerHealth: {fileID: 1184187823}
   timeAdd: 0
   addHealth: 0
   speedMultiplier: 1.4

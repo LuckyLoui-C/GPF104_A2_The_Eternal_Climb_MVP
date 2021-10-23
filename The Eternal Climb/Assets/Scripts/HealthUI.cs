@@ -12,23 +12,27 @@ public class HealthUI : MonoBehaviour
 
     [Header("Display Settings")]
     public int healthRequired; // Amount of player health needed to display this heart
-    public bool displayHeart;
+    public bool displayHeart = true;
 
     private void Update()
     {
         if (playerHealth.health >= healthRequired)
         {
-            if (playerHealth.health == 3.0f)
+            displayHeart = true;
+            if (playerHealth.health == 3.0f && displayHeart)
             {
                 GetComponent<UnityEngine.UI.Image>().sprite = fullHealth;
+                GetComponent<UnityEngine.UI.Image>().color = Color.white;
             }
-            else if (playerHealth.health == 2.0f)
+            else if (playerHealth.health == 2.0f && displayHeart)
             {
                 GetComponent<UnityEngine.UI.Image>().sprite = midHealth;
+                GetComponent<UnityEngine.UI.Image>().color = Color.white;
             }
-            else if (playerHealth.health == 1.0f)
+            else if (playerHealth.health == 1.0f && displayHeart)
             {
                 GetComponent<UnityEngine.UI.Image>().sprite = lowHealth;
+                GetComponent<UnityEngine.UI.Image>().color = Color.white;
             }
         }
         else
