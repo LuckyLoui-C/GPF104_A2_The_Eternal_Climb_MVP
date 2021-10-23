@@ -4,15 +4,7 @@ using UnityEngine;
 
 public class HealthUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public PlayerHealth playerHealth;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
