@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 5bfd16f35093cf64ca103a0cc5341a64
   - enabled: 1
-    path: Assets/Scenes/TestScene 2.unity
-    guid: 59e7ef5bf952cd94697b396be61e7621
+    path: Assets/Scenes/PlayTime.unity
+    guid: b3e1d8fc4653ae741b00735bc4bf3036
   m_configObjects: {}
