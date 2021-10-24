@@ -86,6 +86,18 @@ public class PlayerMovement : MonoBehaviour
             jumpAxisInUse = false;
         }
 
+        if (Input.GetAxisRaw("Horizontal") != 0)
+        {
+            animator.Play("CharacterWalkCycle");
+        }
+        else if (Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Jump") != 1)
+        {
+            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("CharacterIdle"))
+            {
+                StartCoroutine(SetAnimToIdle());
+            }
+        }
+
         // Creates an invisible box that detects if its touching the ground or wall respectively and returns true if it is
         isGrounded = Physics2D.OverlapBox(new Vector2(this.transform.position.x, this.transform.position.y - jumpBoxPosY), new Vector2 (jumpBoxWidth,jumpBoxHeight),0f,groundLayerMask);
         isTouchingWall = Physics2D.OverlapBox(new Vector2(this.transform.position.x, this.transform.position.y - wallBoxPosY), new Vector2(wallBoxWidth, wallBoxHeight), 0f, wallLayerMask);
@@ -164,6 +176,11 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator MakeHimJump()
     {
         animator.Play("CharacterJump");
+        yield return new WaitForSeconds(animWait);
+        animator.Play("CharacterIdle");
+    }
+    IEnumerator SetAnimToIdle()
+    {
         yield return new WaitForSeconds(animWait);
         animator.Play("CharacterIdle");
     }
