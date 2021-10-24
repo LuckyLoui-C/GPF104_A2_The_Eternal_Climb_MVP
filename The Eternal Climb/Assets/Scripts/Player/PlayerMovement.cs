@@ -57,8 +57,10 @@ public class PlayerMovement : MonoBehaviour
     {
 
         // Horizontal input and movement
-        if (Input.GetAxisRaw("Horizontal") != 0)
-            playerTransform.localScale = new Vector3(playerTransform.localScale.x * Input.GetAxisRaw("Horizontal"), transform.localScale.y, 0);
+        if (Input.GetAxisRaw("Horizontal") == -1 && Mathf.Sign(playerTransform.localScale.x) == -1)
+            playerTransform.localScale = new Vector3(playerTransform.localScale.x * -1, transform.localScale.y, 0);
+        if (Input.GetAxisRaw("Horizontal") == 1 && Mathf.Sign(playerTransform.localScale.x) == 1)
+            playerTransform.localScale = new Vector3(playerTransform.localScale.x * -1, transform.localScale.y, 0);
 
         float movement = Input.GetAxisRaw("Horizontal") * moveSpeed;
         playerRb.velocity = new Vector3(movement, playerRb.velocity.y, 0);
