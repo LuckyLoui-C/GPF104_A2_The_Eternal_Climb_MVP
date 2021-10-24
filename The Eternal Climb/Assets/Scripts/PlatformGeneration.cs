@@ -65,6 +65,7 @@ public class PlatformGeneration : MonoBehaviour
     }
     IEnumerator SpawnPlatform()
     {
+
         if (canSpawn)
         {
             int selectedPlatNum = Random.Range(0, platSpawns.Length);
@@ -75,14 +76,6 @@ public class PlatformGeneration : MonoBehaviour
             {
                 yield return new WaitForSeconds(timeToNewPlat);
                 Instantiate(platform, newTrans, Quaternion.identity);
-                if (platSpawns[selectedPlatNum + 1] != null)
-                {
-                    Destroy(platSpawns[selectedPlatNum + 1]);
-                }
-                if (platSpawns[selectedPlatNum - 1] != null)
-                {
-                    Destroy(platSpawns[selectedPlatNum - 1]);
-                }
                 StartCoroutine(SpawnPlatform());
             }
             else
