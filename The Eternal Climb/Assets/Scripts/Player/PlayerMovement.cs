@@ -6,6 +6,9 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Component References")]
     private Rigidbody2D playerRb;
+    public SpriteRenderer playerRenderer;
+    public Animator animator;
+    private Transform playerTransform;
 
     [Header("Movement Settings")]
     public float moveSpeed; // The players moving speed which is set in the inspector
@@ -23,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
 
     public int maxJumpNum; // How many air jumps the player is set to have (cannot be zero)
     public int currentJumpNum; // How many air jumps the player has left
+
+    public float animWait; // Set the time waiting for the animator to set back to idle
 
     private bool jumpOnGrounded;
     private bool jumpRequested; // Has the player pushed the jump input
@@ -45,11 +50,16 @@ public class PlayerMovement : MonoBehaviour
     {
         // Initialization of references to components
         playerRb = this.GetComponent<Rigidbody2D>();
+        playerTransform = this.GetComponent<Transform>();
     }
 
     private void Update()
     {
+
         // Horizontal input and movement
+        if (Input.GetAxisRaw("Horizontal") != 0)
+            playerTransform.localScale = new Vector3(playerTransform.localScale.x * Input.GetAxisRaw("Horizontal"), transform.localScale.y, 0);
+
         float movement = Input.GetAxisRaw("Horizontal") * moveSpeed;
         playerRb.velocity = new Vector3(movement, playerRb.velocity.y, 0);
 
@@ -85,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Jump if the jump key was pushed while not grounded and the player became grounded within the buffer time
-        if(jumpOnGrounded && isGrounded)
+        if (jumpOnGrounded && isGrounded)
         {
             currentJumpNum = maxJumpNum;
             jumpRequested = true;
@@ -113,10 +123,11 @@ public class PlayerMovement : MonoBehaviour
             playerRb.velocity = new Vector3(playerRb.velocity.x, 0, 0);
             playerRb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             jumpRequested = false;
+            StartCoroutine(MakeHimJump());
         }
 
         // If the player is moving into a wall midair, they slide down the wall slower
-        if(isTouchingWall && Input.GetAxisRaw("Horizontal") != 0 && playerRb.velocity.y < 0)
+        if (isTouchingWall && Input.GetAxisRaw("Horizontal") != 0 && playerRb.velocity.y < 0)
         {
             playerRb.velocity = new Vector2(playerRb.velocity.x,0);
             playerRb.gravityScale = wallSlideSpeed;
@@ -146,5 +157,12 @@ public class PlayerMovement : MonoBehaviour
         jumpOnGrounded = true;
         yield return new WaitForSeconds(jumpBuffer);
         jumpOnGrounded = false;
+    }
+
+    IEnumerator MakeHimJump()
+    {
+        animator.Play("CharacterJump");
+        yield return new WaitForSeconds(animWait);
+        animator.Play("CharacterIdle");
     }
 }

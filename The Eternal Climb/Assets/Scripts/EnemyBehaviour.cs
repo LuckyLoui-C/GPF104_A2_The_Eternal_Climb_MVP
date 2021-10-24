@@ -45,9 +45,11 @@ public class EnemyBehaviour : MonoBehaviour
     {
         // Perform the attack before waiting for the cooldown
         isAttacking = true;
+        animator.Play("SkeletonAttack");
         playerHealth.DoDamage(damage);
         yield return new WaitForSeconds(attackCooldown);
         isAttacking = false;
+        animator.Play("SkeletonWalkCycle");
     }
 
     public void Die()

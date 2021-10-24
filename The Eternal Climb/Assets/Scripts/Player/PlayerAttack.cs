@@ -18,7 +18,9 @@ public class PlayerAttack : MonoBehaviour
     public float hitboxHeight; // The height of the jump OverlapBox
     public float hitboxWidth; // The width of the jump OverlapBox
 
+    [Header("Component References")]
     public SpriteRenderer playerRenderer;
+    public Animator animator;
 
     private void Start()
     {
@@ -42,6 +44,7 @@ public class PlayerAttack : MonoBehaviour
     IEnumerator Attack()
     {
         isAttacking = true;
+        animator.Play("CharacterAttack");
         yield return new WaitForSeconds(pauseBefore);
         Collider2D collider = Physics2D.OverlapBox(new Vector2(this.transform.position.x + hitboxPosX, this.transform.position.y), new Vector2(hitboxWidth, hitboxHeight), 0f, enemyLayerMask);
         Color originalColor = playerRenderer.color;
@@ -54,6 +57,7 @@ public class PlayerAttack : MonoBehaviour
         playerRenderer.color = originalColor;
         yield return new WaitForSeconds(cooldownAfter - hitmarkerTime);
         isAttacking = false;
+        animator.Play("CharacterIdle");
     }
     private void OnDrawGizmos()
     {
