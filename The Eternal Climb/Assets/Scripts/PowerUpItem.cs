@@ -8,7 +8,7 @@ public class PowerUpItem : MonoBehaviour
 {
     [Header("Component References")]
     public CountdownTimer countdownTimer;
-    //TODO: add PlayerHealth reference
+    public PlayerHealth playerHealth;
 
     [Header("Power Up Settings")] // Adjust these in scene for each item type
     public float timeAdd;
@@ -42,8 +42,7 @@ public class PowerUpItem : MonoBehaviour
         countdownTimer.timeRemaining += timeAdd;
 
         // Get PlayerHealth reference from other collider
-        // PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
-        // playerHealth.healthRemaining += addHealth; // Increase the player's health
+        playerHealth.health += addHealth; // Increase the player's health
         
         Debug.Log("Stats changed");
         Destroy(this.gameObject); // Destroy the power up.. //TODO: add sound on collect
