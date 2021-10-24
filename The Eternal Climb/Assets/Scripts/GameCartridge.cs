@@ -14,8 +14,9 @@ public class GameCartridge : MonoBehaviour
     public AudioSource enemySound;
 
     [Header("Component References")]
-    public GameObject gameOverMenu;
     public GameObject player;
+    public GameObject gameOverMenu;
+    public GameObject pauseMenu;
     public CountdownTimer timer;
     public Text scoreText;
     public Text gameOverMessage;
@@ -26,6 +27,7 @@ public class GameCartridge : MonoBehaviour
     public int highScore = 0; // The highest score acheived on this PC
 
     public bool isGameRunning; // Bool is the game scene started and currently active?
+    public bool paused = false; // Bool to pause and unpause the game
 
 
     // Start is called before the first frame update
@@ -35,11 +37,17 @@ public class GameCartridge : MonoBehaviour
         scoreText.text = "Score: " + currentScore;
         //TODO: gameMusic.Play(); // Play the scene music
         gameOverMenu.SetActive(false);
+        pauseMenu.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            pauseMenu.SetActive(true);
+            Time.timeScale = 0f;
+        }
         //if (!isGameRunning) // TODO:
             //gameMusic.Stop();
     }
@@ -57,5 +65,11 @@ public class GameCartridge : MonoBehaviour
         gameOverMenu.SetActive(true);
         timer.timerIsRunning = false;
         gameOverMessage.text = gameOverReason;
+    }
+
+    // For use with the resume button in pause menu scene
+    public void unPause()
+    {
+        Time.timeScale = 1f;
     }
 }
