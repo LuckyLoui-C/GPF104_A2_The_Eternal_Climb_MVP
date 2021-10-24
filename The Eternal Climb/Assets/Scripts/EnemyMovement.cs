@@ -21,6 +21,14 @@ public class EnemyMovement : MonoBehaviour
         if (other.CompareTag("PlatformEdge") || other.CompareTag("Wall")) // If he hit that wall, spin around and walk the other way
         {
             xDirection *= -1.0f;
+            if (xDirection < 0.0f)
+            {
+                GetComponent<SpriteRenderer>().flipX = false; // Turn the enemy around on x axis
+            }
+            else
+            {
+                GetComponent<SpriteRenderer>().flipX = true;
+            }
         }
     }
     private void Update()
