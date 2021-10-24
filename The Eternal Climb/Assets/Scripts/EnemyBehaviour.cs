@@ -6,6 +6,7 @@ public class EnemyBehaviour : MonoBehaviour
 {
     [Header("Component References")]
     public GameCartridge gameManager;
+    public Animator animator;
     private PlayerHealth playerHealth;
     private Rigidbody2D enemyRb;
     private BoxCollider2D enemyCollider; // Prevent collisions after enemy death
