@@ -4125,6 +4125,10 @@ PrefabInstance:
       value: Enemy1
       objectReference: {fileID: 0}
     - target: {fileID: 2643160964714120205, guid: 739d35b91cb1c134d992254510aa0294, type: 3}
+      propertyPath: timeReward
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2643160964714120205, guid: 739d35b91cb1c134d992254510aa0294, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1205333440}

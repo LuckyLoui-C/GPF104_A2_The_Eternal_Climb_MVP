@@ -14,6 +14,7 @@ public class EnemyBehaviour : MonoBehaviour
     [Header("Attack Settings")]
     public float damage;
     public float attackCooldown;
+    public float timeReward;
 
     private bool isAttacking;
     private bool canAttack;
@@ -55,5 +56,6 @@ public class EnemyBehaviour : MonoBehaviour
         spriteRenderer.color = Color.black; // Signify death
         enemyRb.gravityScale = 3.0f; // Allow dead enemy to fall off screen
         gameManager.addPoints(1); // Add a point for that sweet kill
+        gameManager.timer.timeRemaining += timeReward;
     }
 }
