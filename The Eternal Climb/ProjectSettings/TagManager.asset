@@ -9,6 +9,7 @@ TagManager:
   - Platform
   - PlatformEdge
   - Wall
+  - PlatSpawn
   layers:
   - Default
   - TransparentFX
@@ -54,4 +55,7 @@ TagManager:
     locked: 0
   - name: Foreground
     uniqueID: 3345592017
+    locked: 0
+  - name: UI
+    uniqueID: 4056193553
     locked: 0
