@@ -10,6 +10,7 @@ public class PlayerHealth : MonoBehaviour
     private Rigidbody2D playeRb;
     private Collider2D playerCollider;
     public Collider2D otherPlayerCollider;
+    public GameCartridge gameManager;
 
     [Header("Health Settings")]
     public float health;
@@ -24,7 +25,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (health <= 0)
         {
-            Die();
+            Die("You got hit 1 too many times!");
         }
     }
     public void DoDamage(float amountOfDamage)
@@ -32,12 +33,14 @@ public class PlayerHealth : MonoBehaviour
         // TODO: Give the player a push away from the enemy that hit it
         health -= amountOfDamage;
     }
-    void Die()
+    public void Die(string deathReason)
     {
         // Temporary death animation
         playerCollider.enabled = false;
         otherPlayerCollider.enabled = false;
         playerRenderer.color = Color.black;
         playeRb.gravityScale = 3.0f;
+        //TODO: gameManager.deathSound.Play();
+        gameManager.displayGameOverMenu(deathReason);
     }
 }

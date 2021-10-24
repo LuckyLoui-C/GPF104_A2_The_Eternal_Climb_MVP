@@ -10,4 +10,9 @@ public class SceneHandler : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
     }
+
+    public void ExitApplication()
+    {
+        Application.Quit();
+    }
 }

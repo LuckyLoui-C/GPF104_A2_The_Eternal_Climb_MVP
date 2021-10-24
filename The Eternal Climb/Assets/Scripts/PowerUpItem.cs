@@ -41,8 +41,11 @@ public class PowerUpItem : MonoBehaviour
         // Add power up time to the timer
         countdownTimer.timeRemaining += timeAdd;
 
-        // Get PlayerHealth reference from other collider
-        playerHealth.health += addHealth; // Increase the player's health
+        if (playerHealth.health < 3)
+        {
+            // Get PlayerHealth reference from other collider
+            playerHealth.health += addHealth; // Increase the player's health
+        }
         
         Debug.Log("Stats changed");
         Destroy(this.gameObject); // Destroy the power up.. //TODO: add sound on collect
