@@ -1157,6 +1157,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: character-pieced-blackline
       objectReference: {fileID: 0}
+    - target: {fileID: -3160529949558339879, guid: 91d0f0498a6ae7642932de97363cc9c5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0055669546
+      objectReference: {fileID: 0}
+    - target: {fileID: -3160529949558339879, guid: 91d0f0498a6ae7642932de97363cc9c5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.64557153
+      objectReference: {fileID: 0}
     - target: {fileID: 4147479423477219661, guid: 91d0f0498a6ae7642932de97363cc9c5, type: 3}
       propertyPath: m_RootOrder
       value: 1
