@@ -23,11 +23,11 @@ public class EnemyMovement : MonoBehaviour
             xDirection *= -1.0f;
             if (xDirection < 0.0f)
             {
-                GetComponent<SpriteRenderer>().flipX = false; // Turn the enemy around on x axis
+                GetComponent<Transform>().rotation = new Quaternion(0, 0, 0, 0); // Turn the enemy to face the other way
             }
             else
             {
-                GetComponent<SpriteRenderer>().flipX = true;
+                GetComponent<Transform>().rotation = new Quaternion(0, -180, 0, 0);
             }
         }
     }
