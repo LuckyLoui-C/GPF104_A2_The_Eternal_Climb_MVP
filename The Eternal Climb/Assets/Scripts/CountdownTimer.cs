@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class CountdownTimer : MonoBehaviour
 {
     public float timeRemaining; // Set in scene
-    public bool timerIsRunning = false; // Can pausse the timer from GameCartridge if we want (i.e. collectible that pauses time for 3 sec etc.)
+    public bool timerIsRunning = false; // Can pause the timer from GameCartridge if we want (i.e. collectible that pauses time for 3 sec etc.)
     public Text timeText; // to display on UI
 
     private void Start()
@@ -38,7 +38,8 @@ public class CountdownTimer : MonoBehaviour
 
         float minutes = Mathf.FloorToInt(timeToDisplay / 60); // Divide by 60 to get min. remaining
         float seconds = Mathf.FloorToInt(timeToDisplay % 60); // Modulus 60 to get sec. remaining
+        float milliSeconds = (timeToDisplay % 1) * 1000; // Milliseconds remaining
 
-        // timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        timeText.text = string.Format("Time Left: {0:00}:{1:00}:{2:00}", minutes, seconds, milliSeconds);
     }
 }
