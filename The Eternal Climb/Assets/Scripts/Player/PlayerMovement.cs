@@ -86,15 +86,16 @@ public class PlayerMovement : MonoBehaviour
             jumpAxisInUse = false;
         }
 
-        if (Input.GetAxisRaw("Horizontal") != 0)
+        if (Input.GetAxisRaw("Horizontal") != 0 && !animator.GetCurrentAnimatorStateInfo(0).IsName("CharacterAttack"))
         {
             animator.Play("CharacterWalkCycle");
         }
         else if (Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Jump") != 1)
         {
-            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("CharacterIdle"))
+            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("CharacterAttack"))
             {
-                StartCoroutine(SetAnimToIdle());
+                //StartCoroutine(SetAnimToIdle());
+                animator.Play("CharacterIdle");
             }
         }
 
@@ -182,6 +183,6 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator SetAnimToIdle()
     {
         yield return new WaitForSeconds(animWait);
-        animator.Play("CharacterIdle");
+        
     }
 }
