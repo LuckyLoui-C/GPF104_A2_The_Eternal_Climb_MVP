@@ -5,11 +5,12 @@ using UnityEngine;
 public class EnemyBehaviour : MonoBehaviour
 {
     [Header("Component References")]
+    public GameCartridge gameManager;
+    public Animator animator;
     private PlayerHealth playerHealth;
     private Rigidbody2D enemyRb;
     private BoxCollider2D enemyCollider; // Prevent collisions after enemy death
     private SpriteRenderer spriteRenderer; // Change colour of sprite
-    public GameCartridge gameManager;
 
     [Header("Attack Settings")]
     public float damage;
