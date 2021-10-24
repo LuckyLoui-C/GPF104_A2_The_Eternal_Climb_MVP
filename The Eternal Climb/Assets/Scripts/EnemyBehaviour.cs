@@ -9,10 +9,12 @@ public class EnemyBehaviour : MonoBehaviour
     private Rigidbody2D enemyRb;
     private BoxCollider2D enemyCollider; // Prevent collisions after enemy death
     private SpriteRenderer spriteRenderer; // Change colour of sprite
+    public GameCartridge gameManager;
 
     [Header("Attack Settings")]
     public float damage;
     public float attackCooldown;
+    public float timeReward;
 
     private bool isAttacking;
     private bool canAttack;
@@ -53,5 +55,7 @@ public class EnemyBehaviour : MonoBehaviour
         enemyCollider.enabled = false; // No longer collides with player (or weapon)
         spriteRenderer.color = Color.black; // Signify death
         enemyRb.gravityScale = 3.0f; // Allow dead enemy to fall off screen
+        gameManager.addPoints(1); // Add a point for that sweet kill
+        gameManager.timer.timeRemaining += timeReward;
     }
 }
