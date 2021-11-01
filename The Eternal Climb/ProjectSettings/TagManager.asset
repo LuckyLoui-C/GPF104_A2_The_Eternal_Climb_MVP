@@ -10,6 +10,7 @@ TagManager:
   - PlatformEdge
   - Wall
   - PlatSpawn
+  - Dragon
   layers:
   - Default
   - TransparentFX

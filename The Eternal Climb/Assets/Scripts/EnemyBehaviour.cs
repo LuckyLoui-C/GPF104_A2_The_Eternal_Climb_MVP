@@ -7,6 +7,7 @@ public class EnemyBehaviour : MonoBehaviour
     [Header("Component References")]
     public GameCartridge gameManager;
     public Animator animator;
+    public Projectile bomb;
     private PlayerHealth playerHealth;
     private Rigidbody2D enemyRb;
     private BoxCollider2D enemyCollider; // Prevent collisions after enemy death
@@ -19,6 +20,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private bool isAttacking;
     private bool canAttack;
+    private float dropBombCountdown;
 
     private void Start()
     {
@@ -30,6 +32,18 @@ public class EnemyBehaviour : MonoBehaviour
 
         // Initialization of variables
         canAttack = true;
+        dropBombCountdown = 2.0f;
+    }
+
+    private void Update()
+    {
+        dropBombCountdown -= Time.deltaTime;
+        // If this enemy is type dragon, attack will be drop bombs periodically
+        if (this.CompareTag("Dragon") && dropBombCountdown <= 0.0f)
+        {
+            DropBombs();
+            dropBombCountdown = 5.0f;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -41,6 +55,7 @@ public class EnemyBehaviour : MonoBehaviour
         }
     }
 
+    // Basic enemy attack function
     IEnumerator Attack()
     {
         // Perform the attack before waiting for the cooldown
@@ -50,6 +65,16 @@ public class EnemyBehaviour : MonoBehaviour
         yield return new WaitForSeconds(attackCooldown);
         isAttacking = false;
         animator.Play("SkeletonWalkCycle");
+    }
+
+    // After dropBombCountdown time, drragon drops another bomb
+    public void DropBombs()
+    {
+        Projectile clone = Instantiate(bomb, transform.position, transform.rotation);
+
+        bomb.selfDestroyTime = 5;
+        //Instantiate(dropItemPrefab, this.GetComponent<Transform>().transform); // Instantiate the bomb at the location of the dragon enemy
+        
     }
 
     public void Die()

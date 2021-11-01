@@ -6,10 +6,6 @@ using UnityEngine;
 // Adjust the variables for each item accordingly
 public class PowerUpItem : MonoBehaviour
 {
-    [Header("Component References")]
-    public CountdownTimer countdownTimer;
-    public PlayerHealth playerHealth;
-
     [Header("Power Up Settings")] // Adjust these in scene for each item type
     public float timeAdd;
     public int addHealth;
@@ -18,7 +14,16 @@ public class PowerUpItem : MonoBehaviour
     public float speedMultiplier; // Amount to multiply speed by
     public float duration; // How long does speed up effect last?
 
-    private bool collected = false; // Added a bool as circle collider hitting multiple times in one collision
+    private CountdownTimer countdownTimer;
+    private PlayerHealth playerHealth;
+    private bool collected;
+
+    private void Start()
+    {
+        collected = false; // Added a bool as circle collider hitting multiple times in one collision
+        playerHealth = FindObjectOfType<PlayerHealth>();
+        countdownTimer = FindObjectOfType<CountdownTimer>();
+    }
 
     // Check if collision was with player before calling Pickup() function
     void OnTriggerEnter2D(Collider2D other) // TODO: Change in EnemyDeath script to CompareTag
@@ -46,7 +51,7 @@ public class PowerUpItem : MonoBehaviour
             // Get PlayerHealth reference from other collider
             playerHealth.health += addHealth; // Increase the player's health
         }
-        
+
         Debug.Log("Stats changed");
         Destroy(this.gameObject); // Destroy the power up.. //TODO: add sound on collect
     }    

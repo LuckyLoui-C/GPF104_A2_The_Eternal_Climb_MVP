@@ -55,7 +55,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-
         // Horizontal input and movement
         if (Input.GetAxisRaw("Horizontal") == -1 && Mathf.Sign(playerTransform.localScale.x) == -1)
             playerTransform.localScale = new Vector3(playerTransform.localScale.x * -1, transform.localScale.y, 0);
