@@ -4,19 +4,12 @@ using UnityEngine;
 
 public class PlatformGeneration : MonoBehaviour
 {
-    public float timeToNewBackground;
-    public float distanceToDestroyBackground;
     public float cameraSpeed;
     public float distanceBetweenBackgrounds;
     private float backgroundPosY;
-
-    public float timeToNewPlat;
-    private bool canSpawn;
-
-    public GameObject platform;
     public GameObject background;
     private GameObject movingCamera;
-    private GameObject[] platSpawns;
+
     private void Start()
     {
         backgroundPosY = 0;

@@ -6,15 +6,14 @@ public class BackgroundCall : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("MainCamera"))
+        if (collision.CompareTag("MainCamera") && !this.CompareTag("AntiSpawn"))
         {
-            Debug.Log("Wow");
             FindObjectOfType<PlatformGeneration>().GenerateNewBackground();
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("MainCamera"))
+        if (collision.CompareTag("MainCamera") && !this.CompareTag("AntiSpawn"))
         {
             Destroy(this.gameObject);
         }
