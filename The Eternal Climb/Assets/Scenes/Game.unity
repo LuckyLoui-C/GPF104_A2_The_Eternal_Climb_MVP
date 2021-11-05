@@ -206,6 +206,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< Updated upstream
 --- !u!1 &1139221590
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,6 +347,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a8a3d54df4c2da4ea4ac8a136238de1, type: 3}
+=======
+>>>>>>> Stashed changes
 --- !u!1 &1750584465
 GameObject:
   m_ObjectHideFlags: 0
@@ -380,8 +383,13 @@ MonoBehaviour:
   cameraSpeed: 0.4
   distanceBetweenBackgrounds: 12.5
   timeToNewPlat: 1
+<<<<<<< Updated upstream
   platform: {fileID: 1139221590}
   background: {fileID: 4616062721365051215, guid: 0a8a3d54df4c2da4ea4ac8a136238de1, type: 3}
+=======
+  platform: {fileID: 2363642767548494049, guid: afbfced634f306145961c4ae6ce37f66, type: 3}
+  background: {fileID: 2663299351372245513, guid: 7afdf55adf299d44c95d9dfd7cb46dd6, type: 3}
+>>>>>>> Stashed changes
 --- !u!4 &1750584467
 Transform:
   m_ObjectHideFlags: 0

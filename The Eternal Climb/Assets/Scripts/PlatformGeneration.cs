@@ -70,24 +70,53 @@ public class PlatformGeneration : MonoBehaviour
         {
             int selectedPlatNum = Random.Range(0, platSpawns.Length);
             int randomPosX = Random.Range(0, 10);
+            while (platSpawns[selectedPlatNum] == null)
+            {
+                selectedPlatNum = Random.Range(0, platSpawns.Length);
+            }
             Vector2 newTrans = new Vector2(platSpawns[selectedPlatNum].transform.position.x + randomPosX, platSpawns[selectedPlatNum].transform.position.y);
-            Destroy(platSpawns[selectedPlatNum]);
+            DestroyPlatform(selectedPlatNum);
             if (newTrans.y > movingCamera.transform.position.y + 5)
             {
-                yield return new WaitForSeconds(timeToNewPlat);
-                Instantiate(platform, newTrans, Quaternion.identity);
-                StartCoroutine(SpawnPlatform());
+                 yield return new WaitForSeconds(timeToNewPlat);
+                 Instantiate(platform, newTrans, Quaternion.identity);
+                 StartCoroutine(SpawnPlatform());
             }
             else
             {
-                yield return new WaitForSeconds(timeToNewPlat / 3);
-                StartCoroutine(SpawnPlatform());
+                 yield return new WaitForSeconds(timeToNewPlat / 3);
+                  StartCoroutine(SpawnPlatform());
             }
         }
         else
         {
-            yield return new WaitForSeconds(timeToNewPlat / 3);
-            StartCoroutine(SpawnPlatform());
+             yield return new WaitForSeconds(timeToNewPlat / 3);
+             StartCoroutine(SpawnPlatform());
         }
+    }
+    void DestroyPlatform(int selectedPlatNum)
+    {
+        if (platSpawns[selectedPlatNum].GetComponent<NeigbouringSpawns>().nullAbove == false)
+        {
+            GameObject topSpawn = platSpawns[selectedPlatNum].GetComponent<NeigbouringSpawns>().aboveSpawn.gameObject;
+            if (topSpawn.GetComponent<NeigbouringSpawns>().nullAbove == false)
+            {
+                GameObject topTopSpawn = topSpawn.GetComponent<NeigbouringSpawns>().aboveSpawn.gameObject;
+                topTopSpawn.GetComponent<NeigbouringSpawns>().nullBelow = true;
+            }
+            Destroy(topSpawn);
+        }
+
+        if(platSpawns[selectedPlatNum].GetComponent<NeigbouringSpawns>().nullBelow == false)
+        {
+            GameObject bottomSpawn = platSpawns[selectedPlatNum].GetComponent<NeigbouringSpawns>().belowSpawn.gameObject;
+            if (bottomSpawn.GetComponent<NeigbouringSpawns>().nullBelow == false)
+            {
+                GameObject bottomBottomSpawn = bottomSpawn.GetComponent<NeigbouringSpawns>().belowSpawn.gameObject;
+                bottomBottomSpawn.GetComponent<NeigbouringSpawns>().nullAbove = true;
+            }
+            Destroy(bottomSpawn);
+        }
+        Destroy(platSpawns[selectedPlatNum]);
     }
 }
