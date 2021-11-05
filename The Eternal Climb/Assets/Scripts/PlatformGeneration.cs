@@ -20,73 +20,17 @@ public class PlatformGeneration : MonoBehaviour
     private void Start()
     {
         backgroundPosY = 0;
-        Instantiate(background, new Vector3(0, backgroundPosY, 0), Quaternion.identity);
-        backgroundPosY += distanceBetweenBackgrounds;
-        Instantiate(background, new Vector3(0, backgroundPosY, 0), Quaternion.identity);
+        GenerateNewBackground();
         movingCamera = FindObjectOfType<Camera>().gameObject;
-        StartCoroutine(BackgroundCheck());
-        StartCoroutine(SpawnPlatform());
     }
     private void FixedUpdate()
     {
         movingCamera.transform.position += new Vector3(0, cameraSpeed * Time.deltaTime, 0);
     }
-    private void Update()
+
+    public void GenerateNewBackground()
     {
-        if (GameObject.FindGameObjectsWithTag("PlatSpawn") != null)
-        {
-            canSpawn = true;
-            platSpawns = GameObject.FindGameObjectsWithTag("PlatSpawn");
-        }
-        else
-        {
-            canSpawn = false;
-        }
-    }
-    IEnumerator BackgroundCheck()
-    {
-        yield return new WaitForSeconds(timeToNewBackground);
+        Instantiate(background, new Vector3(0, backgroundPosY, 0), Quaternion.identity);
         backgroundPosY += distanceBetweenBackgrounds;
-        GameObject go = Instantiate(background, new Vector3(0, backgroundPosY, 0), Quaternion.identity);
-        if (Vector2.Distance(go.transform.position, movingCamera.transform.position) > distanceToDestroyBackground)
-        {
-            Destroy(go);
-            backgroundPosY -= distanceBetweenBackgrounds;
-        }
-        GameObject[] backgrounds = GameObject.FindGameObjectsWithTag("Background");
-        foreach(GameObject background in backgrounds)
-        {
-            if (background.transform.position.y < movingCamera.transform.position.y && Vector2.Distance(background.transform.position, movingCamera.transform.position) > distanceToDestroyBackground)
-            {
-                Destroy(background);
-            }
-        }
-        StartCoroutine(BackgroundCheck());
-    }
-    IEnumerator SpawnPlatform()
-    {
-        if (canSpawn)
-        {
-            int selectedPlatNum = Random.Range(0, platSpawns.Length);
-            int randomPosX = Random.Range(0, 10);
-            Vector2 newTrans = new Vector2(platSpawns[selectedPlatNum].transform.position.x + randomPosX, platSpawns[selectedPlatNum].transform.position.y);
-            Destroy(platSpawns[selectedPlatNum]);
-            if (newTrans.y > movingCamera.transform.position.y + 5)
-            {
-                yield return new WaitForSeconds(timeToNewPlat);
-                Instantiate(platform, newTrans, Quaternion.identity);
-                StartCoroutine(SpawnPlatform());
-            }
-            else
-            {
-                yield return new WaitForSeconds(timeToNewPlat / 3);
-                StartCoroutine(SpawnPlatform());
-            }
-        }
-        else
-        {
-            yield return new WaitForSeconds(timeToNewPlat / 3);
-            StartCoroutine(SpawnPlatform());
-        }
     }
 }
