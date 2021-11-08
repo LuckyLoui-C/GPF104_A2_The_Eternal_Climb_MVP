@@ -17,12 +17,18 @@ public class PowerUpItem : MonoBehaviour
     private CountdownTimer countdownTimer;
     private PlayerHealth playerHealth;
     private bool collected;
+    private ParticleSystem healthParticles;
+    private ParticleSystem speedParticles;
+    private ParticleSystem timeParticles;
 
     private void Start()
     {
         collected = false; // Added a bool as circle collider hitting multiple times in one collision
         playerHealth = FindObjectOfType<PlayerHealth>();
         countdownTimer = FindObjectOfType<CountdownTimer>();
+        healthParticles = GameObject.Find("HealthParticles").GetComponent<ParticleSystem>();
+        speedParticles = GameObject.Find("SpeedParticles").GetComponent<ParticleSystem>();
+        timeParticles = GameObject.Find("TimeParticles").GetComponent<ParticleSystem>();
     }
 
     // Check if collision was with player before calling Pickup() function
@@ -32,7 +38,7 @@ public class PowerUpItem : MonoBehaviour
         {
             Debug.Log(gameObject.name + "was picked up item");
             collected = true; // Set this to true to prevent multiple collisions with circle collider
-
+                //GetCompone ntInChildren<ParticleSystem>().Play();
             if (speedMultiplier > 1.0f) // If the power up is a speed multipier, use IEnumerator
                 StartCoroutine(PickupSpeed(other));
             else
@@ -45,6 +51,13 @@ public class PowerUpItem : MonoBehaviour
     {
         // Add power up time to the timer
         countdownTimer.timeRemaining += timeAdd;
+
+        // If power up is health - play health particles
+        // Else play time particles if time power up
+        if (addHealth >= 1)
+            healthParticles.Play();
+        else if (timeAdd >= 1)
+            timeParticles.Play();
 
         if (playerHealth.health < 3)
         {
@@ -63,6 +76,8 @@ public class PowerUpItem : MonoBehaviour
         // Adjust the player speed by power up amount
         PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
         playerMovement.moveSpeed *= speedMultiplier;
+
+        speedParticles.Play(); // Play speed power up particles
 
         // Item will be in the scene for duration of speed power up
         // Disable the mesh and collider so item is not seen, and can collide again

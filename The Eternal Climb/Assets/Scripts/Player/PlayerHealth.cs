@@ -9,8 +9,8 @@ public class PlayerHealth : MonoBehaviour
     private SpriteRenderer playerRenderer;
     private Rigidbody2D playeRb;
     private Collider2D playerCollider;
+    private GameCartridge gameManager;
     public Collider2D otherPlayerCollider;
-    public GameCartridge gameManager;
 
     [Header("Health Settings")]
     public float health;
@@ -20,6 +20,7 @@ public class PlayerHealth : MonoBehaviour
         playeRb = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<BoxCollider2D>();
         playerRenderer = GetComponent<SpriteRenderer>();
+        gameManager = FindObjectOfType<GameCartridge>();
     }
     private void Update()
     {

@@ -6,8 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Component References")]
     private Rigidbody2D playerRb;
-    public SpriteRenderer playerRenderer;
-    public Animator animator;
+    private Animator animator;
     private Transform playerTransform;
 
     [Header("Movement Settings")]
@@ -51,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
         // Initialization of references to components
         playerRb = this.GetComponent<Rigidbody2D>();
         playerTransform = this.GetComponent<Transform>();
+        animator = this.GetComponentInChildren<Animator>();
     }
 
     private void Update()
