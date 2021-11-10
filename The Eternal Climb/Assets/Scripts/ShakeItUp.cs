@@ -12,7 +12,6 @@ public class ShakeItUp : MonoBehaviour
 
     Vector3 initialPosition;
 
-    // Start is called before the first frame update
     void Awake()
     {
         if (cameraTransform == null)
@@ -26,7 +25,6 @@ public class ShakeItUp : MonoBehaviour
         initialPosition = cameraTransform.localPosition;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (shakeDuration > 0)
