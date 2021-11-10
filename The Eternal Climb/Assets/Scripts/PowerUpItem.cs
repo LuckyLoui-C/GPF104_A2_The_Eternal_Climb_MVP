@@ -17,18 +17,15 @@ public class PowerUpItem : MonoBehaviour
     private CountdownTimer countdownTimer;
     private PlayerHealth playerHealth;
     private bool collected;
-    private ParticleSystem healthParticles;
-    private ParticleSystem speedParticles;
-    private ParticleSystem timeParticles;
+    [SerializeField] private GameObject healthParticles;
+    [SerializeField] private GameObject speedParticles;
+    [SerializeField] private GameObject timeParticles;
 
     private void Start()
     {
         collected = false; // Added a bool as circle collider hitting multiple times in one collision
         playerHealth = FindObjectOfType<PlayerHealth>();
         countdownTimer = FindObjectOfType<CountdownTimer>();
-        healthParticles = GameObject.Find("HealthParticles").GetComponent<ParticleSystem>();
-        speedParticles = GameObject.Find("SpeedParticles").GetComponent<ParticleSystem>();
-        timeParticles = GameObject.Find("TimeParticles").GetComponent<ParticleSystem>();
     }
 
     // Check if collision was with player before calling Pickup() function
@@ -55,9 +52,9 @@ public class PowerUpItem : MonoBehaviour
         // If power up is health - play health particles
         // Else play time particles if time power up
         if (addHealth >= 1)
-            healthParticles.Play();
+            Instantiate(healthParticles, new Vector3(transform.position.x,transform.position.y,transform.position.z - 5), transform.rotation);
         else if (timeAdd >= 1)
-            timeParticles.Play();
+            Instantiate(timeParticles, transform.position, Quaternion.identity);
 
         if (playerHealth.health < 3)
         {
@@ -77,7 +74,7 @@ public class PowerUpItem : MonoBehaviour
         PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
         playerMovement.moveSpeed *= speedMultiplier;
 
-        speedParticles.Play(); // Play speed power up particles
+        Instantiate(speedParticles, transform.position, Quaternion.identity); // Play speed power up particles
 
         // Item will be in the scene for duration of speed power up
         // Disable the mesh and collider so item is not seen, and can collide again
