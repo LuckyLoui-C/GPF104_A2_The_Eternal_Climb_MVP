@@ -17,9 +17,9 @@ public class GameCartridge : MonoBehaviour
     public GameObject player;
     public GameObject gameOverMenu;
     public GameObject pauseMenu;
-    public CountdownTimer timer;
-    public Text scoreText;
     public Text gameOverMessage;
+    public Text scoreText;
+    public CountdownTimer timer;
 
 
     public const float MAX_TIME = 60.0f; // Max amount of time available to play, doesn't change as can't get more than max time by killing enemies
@@ -29,6 +29,16 @@ public class GameCartridge : MonoBehaviour
     public bool isGameRunning; // Bool is the game scene started and currently active?
     public bool paused = false; // Bool to pause and unpause the game
 
+
+    private void Awake()
+    {
+        scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
+        timer = GameObject.Find("TimerText").GetComponent<CountdownTimer>();
+        player = GameObject.Find("Player").GetComponent<GameObject>();
+        gameOverMenu = GameObject.Find("GameOverMenu").GetComponent<GameObject>();
+        pauseMenu = GameObject.Find("PauseMenu").GetComponent<GameObject>();
+        gameOverMessage = GameObject.Find("GameOverReasonText").GetComponent<Text>();
+}
 
     // Start is called before the first frame update
     void Start()
