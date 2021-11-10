@@ -11,9 +11,12 @@ public class PlayerHealth : MonoBehaviour
     private Collider2D playerCollider;
     private GameCartridge gameManager;
     public Collider2D otherPlayerCollider;
+    public Animator animator;
 
     [Header("Health Settings")]
     public float health;
+
+    public float animationWait;
 
     private void Start()
     {
@@ -31,8 +34,10 @@ public class PlayerHealth : MonoBehaviour
     }
     public void DoDamage(float amountOfDamage)
     {
+        //StartCoroutine(DamageAnimation());
         // TODO: Give the player a push away from the enemy that hit it
         health -= amountOfDamage;
+        animator.Play("CharacterDamage");
     }
     public void Die(string deathReason)
     {
@@ -44,4 +49,13 @@ public class PlayerHealth : MonoBehaviour
         //TODO: gameManager.deathSound.Play();
         gameManager.displayGameOverMenu(deathReason);
     }
+
+/*    IEnumerator DamageAnimation()
+    {
+        animator.Play("CharacterDamage");
+        Debug.Log("Damage Anim. play");
+        yield return new WaitForSeconds(animationWait);
+        animator.Play("CharacterIdle");
+        Debug.Log("Damage Anim. play");
+    }*/
 }

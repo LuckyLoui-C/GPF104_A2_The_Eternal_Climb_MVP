@@ -118,5 +118,5 @@ MonoBehaviour:
   speedMultiplier: 1
   duration: 0
   healthParticles: {fileID: 3588871453410828268, guid: b50645078e732cb4081061c3be2cce01, type: 3}
-  speedParticles: {fileID: 6639046783251795422, guid: e26b50428ca6a8544997f399d259d7ab, type: 3}
-  timeParticles: {fileID: 2212039742351161896, guid: 24e0cf03bab9bfc49a75944b7dec23bb, type: 3}
+  speedParticles: {fileID: 3588871453410828268, guid: 85c23f0262c215f419fb3f3f3cad82c6, type: 3}
+  timeParticles: {fileID: 3588871453410828268, guid: 5366e6d34b5888748b8adbfdfc77f6e5, type: 3}

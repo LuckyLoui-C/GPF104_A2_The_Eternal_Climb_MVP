@@ -5,9 +5,9 @@ using UnityEngine;
 public class EnemyBehaviour : MonoBehaviour
 {
     [Header("Component References")]
-    public GameCartridge gameManager;
     public Animator animator;
     public Projectile bomb;
+    private GameCartridge gameManager;
     private PlayerHealth playerHealth;
     private Rigidbody2D enemyRb;
     private BoxCollider2D enemyCollider; // Prevent collisions after enemy death
@@ -26,6 +26,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         // Initialization of references to components
         playerHealth = FindObjectOfType<PlayerHealth>();
+        gameManager = FindObjectOfType<GameCartridge>();
         enemyRb = GetComponent<Rigidbody2D>();
         enemyCollider = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();

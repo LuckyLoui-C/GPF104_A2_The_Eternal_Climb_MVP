@@ -30,16 +30,6 @@ public class GameCartridge : MonoBehaviour
     public bool paused = false; // Bool to pause and unpause the game
 
 
-    private void Awake()
-    {
-        scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
-        timer = GameObject.Find("TimerText").GetComponent<CountdownTimer>();
-        player = GameObject.Find("Player").GetComponent<GameObject>();
-        gameOverMenu = GameObject.Find("GameOverMenu").GetComponent<GameObject>();
-        pauseMenu = GameObject.Find("PauseMenu").GetComponent<GameObject>();
-        gameOverMessage = GameObject.Find("GameOverReasonText").GetComponent<Text>();
-}
-
     // Start is called before the first frame update
     void Start()
     {

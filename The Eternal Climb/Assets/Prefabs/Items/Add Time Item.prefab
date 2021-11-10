@@ -113,9 +113,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c8a50910096b5d418f80593609f86ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countdownTimer: {fileID: 0}
-  playerHealth: {fileID: 0}
   timeAdd: 5
   addHealth: 0
   speedMultiplier: 1
   duration: 0
+  healthParticles: {fileID: 3588871453410828268, guid: b50645078e732cb4081061c3be2cce01, type: 3}
+  speedParticles: {fileID: 3588871453410828268, guid: 85c23f0262c215f419fb3f3f3cad82c6, type: 3}
+  timeParticles: {fileID: 3588871453410828268, guid: 5366e6d34b5888748b8adbfdfc77f6e5, type: 3}

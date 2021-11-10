@@ -54,7 +54,7 @@ public class PowerUpItem : MonoBehaviour
         if (addHealth >= 1)
             Instantiate(healthParticles, new Vector3(transform.position.x,transform.position.y,transform.position.z - 5), transform.rotation);
         else if (timeAdd >= 1)
-            Instantiate(timeParticles, transform.position, Quaternion.identity);
+            Instantiate(timeParticles, new Vector3(transform.position.x, transform.position.y, transform.position.z - 5), transform.rotation);
 
         if (playerHealth.health < 3)
         {
@@ -74,7 +74,7 @@ public class PowerUpItem : MonoBehaviour
         PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
         playerMovement.moveSpeed *= speedMultiplier;
 
-        Instantiate(speedParticles, transform.position, Quaternion.identity); // Play speed power up particles
+        Instantiate(speedParticles, new Vector3(transform.position.x, transform.position.y, transform.position.z - 5), transform.rotation); // Play speed power up particles
 
         // Item will be in the scene for duration of speed power up
         // Disable the mesh and collider so item is not seen, and can collide again

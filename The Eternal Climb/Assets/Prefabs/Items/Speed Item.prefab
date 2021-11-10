@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7971550528678234089}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.7, y: 5.07, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.3879, y: 0.3879, z: 0.3879}
   m_Children: []
   m_Father: {fileID: 0}
@@ -113,9 +113,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c8a50910096b5d418f80593609f86ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countdownTimer: {fileID: 0}
-  playerHealth: {fileID: 0}
   timeAdd: 0
   addHealth: 0
   speedMultiplier: 1.6
   duration: 5
+  healthParticles: {fileID: 3588871453410828268, guid: b50645078e732cb4081061c3be2cce01, type: 3}
+  speedParticles: {fileID: 3588871453410828268, guid: 85c23f0262c215f419fb3f3f3cad82c6, type: 3}
+  timeParticles: {fileID: 3588871453410828268, guid: 5366e6d34b5888748b8adbfdfc77f6e5, type: 3}
