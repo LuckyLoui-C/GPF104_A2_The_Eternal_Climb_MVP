@@ -60,12 +60,14 @@ public class EnemyBehaviour : MonoBehaviour
     IEnumerator Attack()
     {
         // Perform the attack before waiting for the cooldown
+        if (!this.CompareTag("Dragon"))
+                    animator.Play("SkeletonAttack");
         isAttacking = true;
-        animator.Play("SkeletonAttack");
         playerHealth.DoDamage(damage,transform.position);
         yield return new WaitForSeconds(attackCooldown);
         isAttacking = false;
-        animator.Play("SkeletonWalkCycle");
+        if (!this.CompareTag("Dragon"))
+            animator.Play("SkeletonWalkCycle");
     }
 
     // After dropBombCountdown time, drragon drops another bomb

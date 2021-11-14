@@ -24,7 +24,10 @@ public class PlatformCall : MonoBehaviour
             if (canSpawnSomething)
             {
                 int entitySpawnNum = Random.Range(0, thingsToSpawn.Count);
-                Instantiate(thingsToSpawn[entitySpawnNum], spawnTrans.position, Quaternion.identity);
+                if (thingsToSpawn[entitySpawnNum].name == "Dragon")
+                    Instantiate(thingsToSpawn[entitySpawnNum], new Vector2(transform.position.x,transform.position.y + 2), Quaternion.identity);
+                else
+                    Instantiate(thingsToSpawn[entitySpawnNum], spawnTrans.position, Quaternion.identity);
             }
         }
         
