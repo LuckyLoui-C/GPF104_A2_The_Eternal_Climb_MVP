@@ -179,9 +179,4 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(animWait);
         animator.Play("CharacterIdle");
     }
-    IEnumerator SetAnimToIdle()
-    {
-        yield return new WaitForSeconds(animWait);
-        
-    }
 }
