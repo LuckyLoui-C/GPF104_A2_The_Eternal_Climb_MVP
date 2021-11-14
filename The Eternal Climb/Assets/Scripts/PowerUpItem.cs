@@ -47,7 +47,7 @@ public class PowerUpItem : MonoBehaviour
     void Pickup(Collider2D player)
     {
         // Add power up time to the timer
-        countdownTimer.timeRemaining += timeAdd;
+        //countdownTimer.timeRemaining += timeAdd;
 
         // If power up is health - play health particles
         // Else play time particles if time power up

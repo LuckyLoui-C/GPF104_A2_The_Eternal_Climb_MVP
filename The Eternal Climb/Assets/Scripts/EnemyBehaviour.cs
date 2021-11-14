@@ -62,7 +62,7 @@ public class EnemyBehaviour : MonoBehaviour
         // Perform the attack before waiting for the cooldown
         isAttacking = true;
         animator.Play("SkeletonAttack");
-        playerHealth.DoDamage(damage);
+        playerHealth.DoDamage(damage,transform.position);
         yield return new WaitForSeconds(attackCooldown);
         isAttacking = false;
         animator.Play("SkeletonWalkCycle");
@@ -85,6 +85,6 @@ public class EnemyBehaviour : MonoBehaviour
         spriteRenderer.color = Color.black; // Signify death
         enemyRb.gravityScale = 3.0f; // Allow dead enemy to fall off screen
         gameManager.addPoints(1); // Add a point for that sweet kill
-        gameManager.timer.timeRemaining += timeReward;
+        //gameManager.timer.timeRemaining += timeReward;
     }
 }
