@@ -29,7 +29,7 @@ public class Projectile : MonoBehaviour
         if (other.CompareTag("Player") && !hit)
         {
             hit = true;
-            other.GetComponent<PlayerHealth>().DoDamage(damage,transform.position); // Decrease the player's health
+            other.GetComponent<PlayerHealth>().DoDamage(damage); // Decrease the player's health
             Destroy(this.gameObject);
         }
     }

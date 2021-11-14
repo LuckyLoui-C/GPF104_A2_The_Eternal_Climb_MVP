@@ -4,30 +4,16 @@ using UnityEngine;
 
 public class PlatformCall : MonoBehaviour
 {
-    [Header("Spawning Platforms")]
     public GameObject platform;
     public Transform spawn1;
     public Transform spawn2;
     private Transform player;
+    public LayerMask antiSpawn;
     public float xDiff;
     public float yDiff;
 
-    [Header("Spawning of Enemies/Items")]
-    [SerializeField] private bool canSpawnSomething = true;
-    public List<GameObject> thingsToSpawn = new List<GameObject>();
-    public Transform spawnTrans;
     private void Start()
     {
-        if(canSpawnSomething)
-        {
-            canSpawnSomething = (Random.Range(1, 3) == 1) ? true : false;
-            if (canSpawnSomething)
-            {
-                int entitySpawnNum = Random.Range(0, thingsToSpawn.Count);
-                Instantiate(thingsToSpawn[entitySpawnNum], spawnTrans.position, Quaternion.identity);
-            }
-        }
-        
         player = FindObjectOfType<PlayerMovement>().transform;
         if(Vector2.Distance(this.transform.position,player.position) <= 10)
         {
@@ -40,33 +26,32 @@ public class PlatformCall : MonoBehaviour
     }
     void GeneratePlatform()
     {
-        GameObject go = null;
         switch (Random.Range(1, 3))
         {
             case 1:
                 Vector3 newVec1 = new Vector3(Random.Range(-xDiff, xDiff), Random.Range(-yDiff, yDiff), 0);
                 spawn1.position += newVec1;
                 if(CheckCanSpawn(spawn1))
-                    go = Instantiate(platform, spawn1.position, Quaternion.identity);
+                    Instantiate(platform, spawn1.position, Quaternion.identity);
                 else
-                    go = Instantiate(platform, spawn2.position, Quaternion.identity);
+                    Instantiate(platform, spawn2.position, Quaternion.identity);
                 break;
             case 2:
                 Vector3 newVec2 = new Vector3(Random.Range(-xDiff, xDiff), Random.Range(-yDiff, yDiff), 0);
                 spawn2.position += newVec2;
                 if (CheckCanSpawn(spawn2))
-                    go = Instantiate(platform, spawn2.position + newVec2, Quaternion.identity);
+                    Instantiate(platform, spawn2.position + newVec2, Quaternion.identity);
                 else
-                    go = Instantiate(platform, spawn1.position, Quaternion.identity);
+                    Instantiate(platform, spawn1.position, Quaternion.identity);
                 break;
         }
-        go.GetComponent<PlatformCall>().canSpawnSomething = true;
         Destroy(spawn1.gameObject);
         Destroy(spawn2.gameObject);
     }
     bool CheckCanSpawn(Transform spawnPos)
     {
         bool canSpawn = spawnPos.position.x <= 6 && spawnPos.position.x >= -6;
+        Debug.Log(canSpawn);
         return canSpawn;
     }
     IEnumerator WaitForDistance()

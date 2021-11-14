@@ -14,8 +14,7 @@ public class PlayerAttack : MonoBehaviour
 
     [Header("Attack Hitbox Settings")]
     public LayerMask enemyLayerMask; 
-    public float hitboxPosX; // The x position of the jump OverlapBox
-    public float hitboxPosY; // The y position of the jump OverlapBox
+    public float hitboxPosX; // The y position of the jump OverlapBox
     public float hitboxHeight; // The height of the jump OverlapBox
     public float hitboxWidth; // The width of the jump OverlapBox
 
@@ -47,7 +46,7 @@ public class PlayerAttack : MonoBehaviour
         isAttacking = true;
         animator.Play("CharacterAttack");
         yield return new WaitForSeconds(pauseBefore);
-        Collider2D collider = Physics2D.OverlapBox(new Vector2(this.transform.position.x + hitboxPosX, this.transform.position.y + hitboxPosY), new Vector2(hitboxWidth, hitboxHeight), 0f, enemyLayerMask);
+        Collider2D collider = Physics2D.OverlapBox(new Vector2(this.transform.position.x + hitboxPosX, this.transform.position.y), new Vector2(hitboxWidth, hitboxHeight), 0f, enemyLayerMask);
         Color originalColor = playerRenderer.color;
         playerRenderer.color = Color.red;
         if(collider != null)
@@ -63,6 +62,6 @@ public class PlayerAttack : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(new Vector2(this.transform.position.x + hitboxPosX, this.transform.position.y + hitboxPosY), new Vector2(hitboxWidth, hitboxHeight));
+        Gizmos.DrawWireCube(new Vector2(this.transform.position.x + hitboxPosX, this.transform.position.y), new Vector2(hitboxWidth, hitboxHeight));
     }
 }

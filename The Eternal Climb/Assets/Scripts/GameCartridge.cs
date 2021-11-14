@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class GameCartridge : MonoBehaviour
 {
@@ -18,9 +17,8 @@ public class GameCartridge : MonoBehaviour
     public GameObject player;
     public GameObject gameOverMenu;
     public GameObject pauseMenu;
-    public TextMeshProUGUI gameOverMessage;
-    public TextMeshProUGUI finalScoreText;
-    public TextMeshProUGUI scoreText;
+    public Text gameOverMessage;
+    public Text scoreText;
     public CountdownTimer timer;
 
 
@@ -36,7 +34,7 @@ public class GameCartridge : MonoBehaviour
     void Start()
     {
         isGameRunning = true;
-        scoreText.text = currentScore.ToString();
+        scoreText.text = "Score: " + currentScore;
         //TODO: gameMusic.Play(); // Play the scene music
         gameOverMenu.SetActive(false);
         pauseMenu.SetActive(false);
@@ -58,16 +56,15 @@ public class GameCartridge : MonoBehaviour
     public void addPoints(int points)
     {
         currentScore += points;
-        scoreText.text = currentScore.ToString();
+        scoreText.text = "Score: " + currentScore;
     }
 
     public void displayGameOverMenu(string gameOverReason)
     {
         isGameRunning = false;
         gameOverMenu.SetActive(true);
-        //timer.timerIsRunning = false;
+        timer.timerIsRunning = false;
         gameOverMessage.text = gameOverReason;
-        finalScoreText.text = scoreText.text;
     }
 
     // For use with the resume button in pause menu scene

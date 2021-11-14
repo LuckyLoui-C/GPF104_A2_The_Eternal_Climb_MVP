@@ -12,7 +12,6 @@ TagManager:
   - PlatSpawn
   - Dragon
   - AntiSpawn
-  - PlayerFallDeath
   layers:
   - Default
   - TransparentFX
