@@ -29,7 +29,7 @@ public class PlayerAttack : MonoBehaviour
     }
     private void Update()
     {
-        if(Input.GetKeyDown(attackKey) && !isAttacking)
+        if(Input.GetMouseButtonDown(0) && !isAttacking)
         {
             StartCoroutine(Attack());
         }
