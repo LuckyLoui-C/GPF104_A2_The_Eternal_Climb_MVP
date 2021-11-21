@@ -65,6 +65,7 @@ public class PlayerHealth : MonoBehaviour
         playerRb.AddForce(dir * knockbackForce);
         health -= amountOfDamage;
         animator.Play("CharacterDamage");
+        gameManager.takeDamageSound.Play();
     }
     public void Die(string deathReason)
     {

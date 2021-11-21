@@ -6,11 +6,17 @@ using TMPro;
 
 public class GameCartridge : MonoBehaviour
 {
-    [Header("Audio Sources")]
+    [Header("Music Sources")]
     public AudioSource gameMusic; // Game music
-    public AudioSource gameOverSound; // Game sound for game over
-    public AudioSource hitSound; // Sounds for character
+    public AudioSource gameOverMusic; // Game sound for game over
+
+    [Header("Character Sounds")]
+    public AudioSource hitSound; // Sounds for character attack
+    public AudioSource takeDamageSound; // Sounds for character attack
+    public AudioSource walkingSound; // Character walking sound
     public AudioSource deathSound;
+
+    [Header("Other Game Sounds")]
     public AudioSource powerUpSound;
     public AudioSource enemySound;
 
@@ -21,7 +27,9 @@ public class GameCartridge : MonoBehaviour
     public TextMeshProUGUI gameOverMessage;
     public TextMeshProUGUI finalScoreText;
     public TextMeshProUGUI scoreText;
-    public CountdownTimer timer;
+    public TextMeshProUGUI finalDistanceText;
+    public TextMeshProUGUI distanceScoreText;
+    public CountdownTimer timer; // Timer to add to time score
 
 
     public const float MAX_TIME = 60.0f; // Max amount of time available to play, doesn't change as can't get more than max time by killing enemies
@@ -50,8 +58,8 @@ public class GameCartridge : MonoBehaviour
             pauseMenu.SetActive(true);
             Time.timeScale = 0f;
         }
-        //if (!isGameRunning) // TODO:
-            //gameMusic.Stop();
+        if (!isGameRunning) // TODO:
+            gameMusic.Stop();
     }
 
     // Function to handle adding points. Can add points when enemy is killed/collectibles etc...
@@ -65,9 +73,10 @@ public class GameCartridge : MonoBehaviour
     {
         isGameRunning = false;
         gameOverMenu.SetActive(true);
-        //timer.timerIsRunning = false;
+        //timer.timerIsRunning = false; // not needed in new game mode
         gameOverMessage.text = gameOverReason;
         finalScoreText.text = scoreText.text;
+        finalDistanceText.text = distanceScoreText.text;
     }
 
     // For use with the resume button in pause menu scene

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 // Creates a countdown timer
 public class CountdownTimer : MonoBehaviour
 {
-    public float timeRemaining; // Set in scene
+    public float timeScore; // Set in scene // Not needed in new game mode
     public bool timerIsRunning = false; // Can pause the timer from GameCartridge if we want (i.e. collectible that pauses time for 3 sec etc.)
     public Text timeText; // to display on UI
     public GameCartridge gameManager;
@@ -20,17 +20,17 @@ public class CountdownTimer : MonoBehaviour
     {
         if (timerIsRunning)
         {
-            if (timeRemaining > 0)
+            if (gameManager.isGameRunning)
             {
-                timeRemaining -= Time.deltaTime; // Every frame, minus delatTime from remaining time, counts down.
-                DisplayTime(timeRemaining);
+                timeScore += Time.deltaTime; // Every frame, minus delatTime from remaining time, counts down.
+                DisplayTime(timeScore);
             }
             else
             {
                 Debug.Log("Time ran out");
-                timeRemaining = 0;
+                //timeRemaining = 0;
+                //gameManager.player.GetComponent<PlayerHealth>().Die("Time ran out! :(");
                 timerIsRunning = false;
-                gameManager.player.GetComponent<PlayerHealth>().Die("Time ran out! :(");
             }
         }
     }
@@ -41,6 +41,6 @@ public class CountdownTimer : MonoBehaviour
         float minutes = Mathf.FloorToInt(timeToDisplay / 60); // Divide by 60 to get min. remaining
         float seconds = Mathf.FloorToInt(timeToDisplay % 60); // Modulus 60 to get sec. remaining
 
-        timeText.text = string.Format("Time Left: {0:00}:{1:00}", minutes, seconds);
+        timeText.text = string.Format("Time Score: {0:00}:{1:00}", minutes, seconds);
     }
 }
