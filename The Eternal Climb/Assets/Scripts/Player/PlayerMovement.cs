@@ -92,7 +92,6 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetAxisRaw("Horizontal") != 0 && !animator.GetCurrentAnimatorStateInfo(0).IsName("CharacterAttack"))
         {
             animator.Play("CharacterWalkCycle");
-            //gameManager.walkingSound.Play();
         }
         else if (Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Jump") != 1)
         {
