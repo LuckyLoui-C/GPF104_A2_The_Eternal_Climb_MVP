@@ -23,6 +23,12 @@ public class PlatformGeneration : MonoBehaviour
 
     public void GenerateNewBackground()
     {
+        if(Random.Range(0,6) == 1)
+        {
+            Instantiate(background, new Vector3(0, backgroundPosY, 0), Quaternion.identity);
+            backgroundPosY += distanceBetweenBackgrounds;
+            return;
+        }
         Instantiate(background, new Vector3(0, backgroundPosY, 0), Quaternion.identity);
         backgroundPosY += distanceBetweenBackgrounds;
     }

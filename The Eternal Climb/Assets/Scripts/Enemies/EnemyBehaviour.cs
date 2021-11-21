@@ -23,6 +23,8 @@ public class EnemyBehaviour : MonoBehaviour
     private bool canAttack;
     private float shootCountdown;
 
+    public LayerMask groundLayerMask;
+
     private void Start()
     {
         // Initialization of references to components
@@ -35,6 +37,14 @@ public class EnemyBehaviour : MonoBehaviour
         // Initialization of variables
         canAttack = true;
         shootCountdown = 2.0f;
+        if(this.CompareTag("Dragon"))
+        {
+            if(Physics2D.OverlapBox(new Vector2(this.transform.position.x, this.transform.position.y), new Vector2(1, 1), 0f, groundLayerMask))
+            {
+                Destroy(this.gameObject);
+                return;
+            }
+        }
     }
 
     private void Update()

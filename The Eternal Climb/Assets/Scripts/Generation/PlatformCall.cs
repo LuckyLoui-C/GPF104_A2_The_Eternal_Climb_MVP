@@ -14,20 +14,33 @@ public class PlatformCall : MonoBehaviour
 
     [Header("Spawning of Enemies/Items")]
     [SerializeField] private bool canSpawnSomething = true;
-    public List<GameObject> thingsToSpawn = new List<GameObject>();
+    public List<GameObject> enemiesToSpawn = new List<GameObject>();
+    public List<GameObject> powersToSpawn = new List<GameObject>();
     public Transform spawnTrans;
     private void Start()
     {
         if(canSpawnSomething)
         {
-            canSpawnSomething = (Random.Range(1, 3) == 1) ? true : false;
+            canSpawnSomething = (Random.Range(1, 4) == 1) ? true : false;
             if (canSpawnSomething)
             {
-                int entitySpawnNum = Random.Range(0, thingsToSpawn.Count);
-                if (thingsToSpawn[entitySpawnNum].name == "Dragon")
-                    Instantiate(thingsToSpawn[entitySpawnNum], new Vector2(transform.position.x,transform.position.y + 2), Quaternion.identity);
+                bool willSpawnPowerUp = (Random.Range(1, 6) == 1) ? true : false;
+                if(willSpawnPowerUp)
+                {
+                    int entitySpawnNum = Random.Range(0, enemiesToSpawn.Count);
+                    Instantiate(powersToSpawn[entitySpawnNum], new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+                }
                 else
-                    Instantiate(thingsToSpawn[entitySpawnNum], spawnTrans.position, Quaternion.identity);
+                {
+                    int entitySpawnNum = Random.Range(0, enemiesToSpawn.Count);
+                    if (enemiesToSpawn[entitySpawnNum].name == "Dragon")
+                    {
+                        Instantiate(enemiesToSpawn[entitySpawnNum], new Vector2(transform.position.x, transform.position.y + 2), Quaternion.identity);
+                    }
+                    else
+                        Instantiate(enemiesToSpawn[entitySpawnNum], spawnTrans.position, Quaternion.identity);
+                }
+               
             }
         }
         
