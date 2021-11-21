@@ -100,7 +100,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.4
+  m_Radius: 0.10465877
 --- !u!114 &4597979768836738316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,6 +115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeAdd: 5
   addHealth: 0
+  axeSprite: {fileID: 4381559604973380507, guid: 005304f785168ea4cadd6ebb4fe9c39b, type: 3}
   speedMultiplier: 0
   duration: 0
   healthParticles: {fileID: 3588871453410828268, guid: b50645078e732cb4081061c3be2cce01, type: 3}
