@@ -9,9 +9,7 @@ public class PowerUpItem : MonoBehaviour
     [Header("Power Up Settings")] // Adjust these in scene for each item type
     public float timeAdd;
     public int addHealth;
-    public Sprite axeSprite;
     private SpriteRenderer playerArm;
-    public GameObject macBook;
 
     [Header("Speed Up Settings")]
     public float speedMultiplier; // Amount to multiply speed by
@@ -43,7 +41,7 @@ public class PowerUpItem : MonoBehaviour
                 PickupSpeed(other);
             else if (this.name == "Axe")
             {
-                playerArm.sprite = axeSprite;
+                playerArm.color = Color.red;
 
                 other.GetComponent<PlayerAttack>().attackPoints = 2;
                 Destroy(this.gameObject);
