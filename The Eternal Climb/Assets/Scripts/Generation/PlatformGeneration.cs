@@ -8,6 +8,7 @@ public class PlatformGeneration : MonoBehaviour
     public float distanceBetweenBackgrounds;
     private float backgroundPosY;
     public GameObject background;
+    public GameObject creepyBackground;
     private GameObject movingCamera;
 
     private void Start()
@@ -23,9 +24,9 @@ public class PlatformGeneration : MonoBehaviour
 
     public void GenerateNewBackground()
     {
-        if(Random.Range(0,6) == 1)
+        if(Random.Range(0,10) == 1)
         {
-            Instantiate(background, new Vector3(0, backgroundPosY, 0), Quaternion.identity);
+            Instantiate(creepyBackground, new Vector3(0, backgroundPosY, 0), Quaternion.identity);
             backgroundPosY += distanceBetweenBackgrounds;
             return;
         }
