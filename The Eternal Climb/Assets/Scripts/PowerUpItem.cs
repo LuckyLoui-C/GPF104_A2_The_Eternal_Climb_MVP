@@ -9,8 +9,8 @@ public class PowerUpItem : MonoBehaviour
     [Header("Power Up Settings")] // Adjust these in scene for each item type
     public float timeAdd;
     public int addHealth;
-    public SpriteRenderer playerWithSword;
-    public SpriteRenderer playerWithAxe;
+    public Sprite axeSprite;
+    private GameObject leftArm;
 
     [Header("Speed Up Settings")]
     public float speedMultiplier; // Amount to multiply speed by
@@ -28,6 +28,7 @@ public class PowerUpItem : MonoBehaviour
         collected = false; // Added a bool as circle collider hitting multiple times in one collision
         playerHealth = FindObjectOfType<PlayerHealth>();
         countdownTimer = FindObjectOfType<CountdownTimer>();
+        leftArm = GameObject.Find("Left Forearm");
     }
 
     // Check if collision was with player before calling Pickup() function
@@ -41,7 +42,7 @@ public class PowerUpItem : MonoBehaviour
                 PickupSpeed(other);
             else if (this.name == "Axe")
             {
-                other.GetComponent<PlayerAttack>().playerRenderer = playerWithAxe;
+                leftArm.GetComponent<SpriteRenderer>().sprite = axeSprite;
                 other.GetComponent<PlayerAttack>().attackPoints = 2;
                 Destroy(this.gameObject);
             }
