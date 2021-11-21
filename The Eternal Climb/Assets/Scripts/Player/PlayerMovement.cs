@@ -33,6 +33,8 @@ public class PlayerMovement : MonoBehaviour
     private bool jumpAxisInUse; // This variable is used to convert a constant input to a toggle input
     private bool isGrounded; // Is the player touching the ground
 
+    [HideInInspector] public bool nextJumpBig;
+    public float bigJumpMultiplier;
 
     [Header("Wall Jumping Settings")]
     public LayerMask wallLayerMask; // A layer of objects that the player can wall jump off of and slide down (the player can't interact with a wall not in this layer)
@@ -51,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
         playerRb = this.GetComponent<Rigidbody2D>();
         playerTransform = this.GetComponent<Transform>();
         animator = this.GetComponentInChildren<Animator>();
+        nextJumpBig = false;
     }
 
     private void Update()
@@ -135,7 +138,13 @@ public class PlayerMovement : MonoBehaviour
                 currentJumpNum--;
             jumpOnGrounded = false;
             playerRb.velocity = new Vector3(playerRb.velocity.x, 0, 0);
-            playerRb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            if (nextJumpBig)
+            {
+                playerRb.AddForce(Vector2.up * (jumpForce * bigJumpMultiplier), ForceMode2D.Impulse);
+                nextJumpBig = false;
+            }
+            else
+                playerRb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             jumpRequested = false;
             StartCoroutine(MakeHimJump());
         }

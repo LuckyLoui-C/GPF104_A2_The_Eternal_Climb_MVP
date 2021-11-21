@@ -33,11 +33,10 @@ public class PowerUpItem : MonoBehaviour
     {
         if (!collected && other.CompareTag("Player"))
         {
-            Debug.Log(gameObject.name + "was picked up item");
             collected = true; // Set this to true to prevent multiple collisions with circle collider
-                //GetCompone ntInChildren<ParticleSystem>().Play();
+                              //GetCompone ntInChildren<ParticleSystem>().Play();
             if (speedMultiplier > 1.0f) // If the power up is a speed multipier, use IEnumerator
-                StartCoroutine(PickupSpeed(other));
+                PickupSpeed(other);
             else
                 Pickup(other);
         }
@@ -62,30 +61,30 @@ public class PowerUpItem : MonoBehaviour
             playerHealth.health += addHealth; // Increase the player's health
         }
 
-        Debug.Log("Stats changed");
         Destroy(this.gameObject); // Destroy the power up.. //TODO: add sound on collect
     }    
 
     // Coroutine for the speed power up to have a set duration
     // before returning the speed back to normal
-    IEnumerator PickupSpeed(Collider2D player)
+    void PickupSpeed(Collider2D player)
     {
-        // Adjust the player speed by power up amount
-        PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
-        playerMovement.moveSpeed *= speedMultiplier;
+        //// Adjust the player speed by power up amount
+        //PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
+        //playerMovement.moveSpeed *= speedMultiplier;
+        //
+        //Instantiate(speedParticles, new Vector3(transform.position.x, transform.position.y, transform.position.z - 5), transform.rotation); // Play speed power up particles
+        //
+        //// Item will be in the scene for duration of speed power up
+        //// Disable the mesh and collider so item is not seen, and can collide again
+        //GetComponent<SpriteRenderer>().enabled = false;
+        //GetComponent<CircleCollider2D>().enabled = false;
+        //
+        //yield return new WaitForSeconds(duration); // Wait for 'duration' seconds
+        //
+        //playerMovement.moveSpeed /= speedMultiplier; // Return speed back to original setting
 
-        Instantiate(speedParticles, new Vector3(transform.position.x, transform.position.y, transform.position.z - 5), transform.rotation); // Play speed power up particles
+        FindObjectOfType<PlayerMovement>().nextJumpBig = true;
 
-        // Item will be in the scene for duration of speed power up
-        // Disable the mesh and collider so item is not seen, and can collide again
-        GetComponent<SpriteRenderer>().enabled = false;
-        GetComponent<CircleCollider2D>().enabled = false;
-
-        yield return new WaitForSeconds(duration); // Wait for 'duration' seconds
-
-        playerMovement.moveSpeed /= speedMultiplier; // Return speed back to original setting
-
-        Debug.Log("Stats changed");
         Destroy(this.gameObject); // Destroy the power up.. //TODO: add sound and maybe speed up music?
     }
 } 
