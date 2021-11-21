@@ -1739,6 +1739,22 @@ PrefabInstance:
       propertyPath: canSpawnSomething
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1139221591, guid: 07914f01bc1c6dd4299629ab1af317d5, type: 3}
+      propertyPath: powersToSpawn.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1139221591, guid: 07914f01bc1c6dd4299629ab1af317d5, type: 3}
+      propertyPath: enemiesToSpawn.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1139221591, guid: 07914f01bc1c6dd4299629ab1af317d5, type: 3}
+      propertyPath: powersToSpawn.Array.data[2]
+      value: 
+      objectReference: {fileID: 4597979768836738317, guid: 22b1a9ab6a5e9b24e91c3817bf960c92, type: 3}
+    - target: {fileID: 1139221591, guid: 07914f01bc1c6dd4299629ab1af317d5, type: 3}
+      propertyPath: enemiesToSpawn.Array.data[2]
+      value: 
+      objectReference: {fileID: 2643160964714120195, guid: 469f6642708dad14db9ee2793c263633, type: 3}
     - target: {fileID: 1415638025688861667, guid: 07914f01bc1c6dd4299629ab1af317d5, type: 3}
       propertyPath: m_RootOrder
       value: 4
