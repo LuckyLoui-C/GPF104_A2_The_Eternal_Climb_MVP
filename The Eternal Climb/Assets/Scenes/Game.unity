@@ -7397,7 +7397,7 @@ MonoBehaviour:
   cameraSpeed: 1.5
   distanceBetweenBackgrounds: 12.5
   background: {fileID: 657119232564035837, guid: 0a8a3d54df4c2da4ea4ac8a136238de1, type: 3}
-  creepyBackground: {fileID: 0}
+  creepyBackground: {fileID: 7587671208007367377, guid: a8f11cf701f5b3748902eeef1730e60d, type: 3}
 --- !u!4 &1750584467
 Transform:
   m_ObjectHideFlags: 0

@@ -11,6 +11,7 @@ public class PowerUpItem : MonoBehaviour
     public int addHealth;
     public Sprite axeSprite;
     private SpriteRenderer playerArm;
+    public GameObject macBook;
 
     [Header("Speed Up Settings")]
     public float speedMultiplier; // Amount to multiply speed by
@@ -43,6 +44,7 @@ public class PowerUpItem : MonoBehaviour
             else if (this.name == "Axe")
             {
                 playerArm.sprite = axeSprite;
+
                 other.GetComponent<PlayerAttack>().attackPoints = 2;
                 Destroy(this.gameObject);
             }
