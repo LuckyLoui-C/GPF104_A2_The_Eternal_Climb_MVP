@@ -45,7 +45,6 @@ public class GameCartridge : MonoBehaviour
     {
         isGameRunning = true;
         scoreText.text = currentScore.ToString();
-        //TODO: gameMusic.Play(); // Play the scene music
         gameOverMenu.SetActive(false);
         pauseMenu.SetActive(false);
     }

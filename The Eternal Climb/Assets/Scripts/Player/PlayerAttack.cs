@@ -23,6 +23,7 @@ public class PlayerAttack : MonoBehaviour
     [Header("Component References")]
     public SpriteRenderer playerRenderer;
     public Animator animator;
+    public AudioClip attackSnd;
 
     private void Start()
     {
@@ -51,6 +52,7 @@ public class PlayerAttack : MonoBehaviour
         yield return new WaitForSeconds(pauseBefore);
         Collider2D collider = Physics2D.OverlapBox(new Vector2(this.transform.position.x + hitboxPosX, this.transform.position.y + hitboxPosY), new Vector2(hitboxWidth, hitboxHeight), 0f, enemyLayerMask);
         Color originalColor = playerRenderer.color;
+        Instantiate(attackSnd, Vector3.zero, Quaternion.identity);
         playerRenderer.color = Color.red;
         if(collider != null)
         {
