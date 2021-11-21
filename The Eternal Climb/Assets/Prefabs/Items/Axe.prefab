@@ -74,9 +74,9 @@ SpriteRenderer:
   m_SortingLayerID: 1644107037
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2486b373af8f0894a850b0093d9595a0, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_Sprite: {fileID: 21300000, guid: 421cc76ecdd050c4eacff7c78e612c8a, type: 3}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -116,6 +116,7 @@ MonoBehaviour:
   timeAdd: 5
   addHealth: 0
   axeSprite: {fileID: 4381559604973380507, guid: 005304f785168ea4cadd6ebb4fe9c39b, type: 3}
+  macBook: {fileID: 0}
   speedMultiplier: 0
   duration: 0
   healthParticles: {fileID: 3588871453410828268, guid: b50645078e732cb4081061c3be2cce01, type: 3}
