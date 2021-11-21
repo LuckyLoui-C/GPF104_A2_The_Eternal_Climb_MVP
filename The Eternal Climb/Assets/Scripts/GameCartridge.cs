@@ -58,8 +58,8 @@ public class GameCartridge : MonoBehaviour
             pauseMenu.SetActive(true);
             Time.timeScale = 0f;
         }
-        if (!isGameRunning) // TODO:
-            gameMusic.Stop();
+        //if (!isGameRunning) // TODO:
+          //  gameMusic.Stop();
     }
 
     // Function to handle adding points. Can add points when enemy is killed/collectibles etc...

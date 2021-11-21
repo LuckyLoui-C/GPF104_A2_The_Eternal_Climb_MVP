@@ -19,6 +19,8 @@ public class EnemyBehaviour : MonoBehaviour
     public float attackCooldown;
     public float timeReward;
 
+    public int enemyHealth;
+
     private bool isAttacking;
     private bool canAttack;
     private float shootCountdown;
@@ -90,14 +92,30 @@ public class EnemyBehaviour : MonoBehaviour
         //Instantiate(dropItemPrefab, this.GetComponent<Transform>().transform); // Instantiate the bomb at the location of the dragon enemy
         
     }
-
-    public void Die()
+    public void Die(int attackPoints)
     {
-        canAttack = false;
-        enemyCollider.enabled = false; // No longer collides with player (or weapon)
-        spriteRenderer.color = Color.black; // Signify death
-        enemyRb.gravityScale = 3.0f; // Allow dead enemy to fall off screen
-        gameManager.addPoints(1); // Add a point for that sweet kill
-        //gameManager.timer.timeRemaining += timeReward;
+        if (enemyHealth <= 1)
+        {
+            canAttack = false;
+            enemyCollider.enabled = false; // No longer collides with player (or weapon)
+            spriteRenderer.color = Color.black; // Signify death
+            enemyRb.gravityScale = 3.0f; // Allow dead enemy to fall off screen
+            gameManager.addPoints(1); // Add a point for that sweet kill
+                                      //gameManager.timer.timeRemaining += timeReward;
+        }
+        else if (enemyHealth > 1)
+        {
+            if (attackPoints > 1)
+            {
+                canAttack = false;
+                enemyCollider.enabled = false; // No longer collides with player (or weapon)
+                spriteRenderer.color = Color.black; // Signify death
+                enemyRb.gravityScale = 3.0f; // Allow dead enemy to fall off screen
+                gameManager.addPoints(1); // Add a point for that sweet kill
+                                          //gameManager.timer.timeRemaining += timeReward;
+            }
+            else
+                enemyHealth--;
+        }
     }
 }

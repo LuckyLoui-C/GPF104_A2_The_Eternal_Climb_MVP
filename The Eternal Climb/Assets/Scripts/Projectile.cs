@@ -32,5 +32,9 @@ public class Projectile : MonoBehaviour
             other.GetComponent<PlayerHealth>().DoDamage(damage,transform.position); // Decrease the player's health
             Destroy(this.gameObject);
         }
+        else if (other.CompareTag("Platform"))
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

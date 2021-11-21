@@ -9,6 +9,7 @@ public class PlayerAttack : MonoBehaviour
     public float pauseBefore;
     public float cooldownAfter;
     public float hitmarkerTime;
+    public int attackPoints;
     private bool isAttacking;
     //public float damage; Will be used when enemies take more than 1 hit to die
 
@@ -26,6 +27,7 @@ public class PlayerAttack : MonoBehaviour
     private void Start()
     {
         isAttacking = false;
+        attackPoints = 1;
     }
     private void Update()
     {
@@ -52,7 +54,7 @@ public class PlayerAttack : MonoBehaviour
         playerRenderer.color = Color.red;
         if(collider != null)
         {
-            collider.GetComponent<EnemyBehaviour>().Die();
+            collider.GetComponent<EnemyBehaviour>().Die(attackPoints);
         }
         yield return new WaitForSeconds(hitmarkerTime);
         playerRenderer.color = originalColor;
