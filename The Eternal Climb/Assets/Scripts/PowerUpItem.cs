@@ -9,6 +9,8 @@ public class PowerUpItem : MonoBehaviour
     [Header("Power Up Settings")] // Adjust these in scene for each item type
     public float timeAdd;
     public int addHealth;
+    public SpriteRenderer playerWithSword;
+    public SpriteRenderer playerWithAxe;
 
     [Header("Speed Up Settings")]
     public float speedMultiplier; // Amount to multiply speed by
@@ -37,6 +39,12 @@ public class PowerUpItem : MonoBehaviour
                               //GetCompone ntInChildren<ParticleSystem>().Play();
             if (speedMultiplier > 1.0f) // If the power up is a speed multipier, use IEnumerator
                 PickupSpeed(other);
+            else if (this.name == "Axe")
+            {
+                other.GetComponent<PlayerAttack>().playerRenderer = playerWithAxe;
+                other.GetComponent<PlayerAttack>().attackPoints = 2;
+                Destroy(this.gameObject);
+            }
             else
                 Pickup(other);
         }

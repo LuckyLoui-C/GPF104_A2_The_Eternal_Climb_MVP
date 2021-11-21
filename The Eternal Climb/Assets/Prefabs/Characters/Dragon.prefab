@@ -162,9 +162,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
   bomb: {fileID: 1697772696368902351, guid: 65a186ec7fd2e8247ae4ee0589c7fcc7, type: 3}
+  bullet: {fileID: 0}
   damage: 1
   attackCooldown: 1
   timeReward: 5
+  enemyHealth: 1
 --- !u!1001 &3536285250603929373
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -43,14 +43,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8ab68beed49a0b438a62efeaf8c20f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countdownTimer: {fileID: 0}
-  gameMusic: {fileID: 0}
-  gameOverSound: {fileID: 0}
-  hitSound: {fileID: 0}
+  gameMusic: {fileID: 4613318720824531667, guid: 63f95d7fa39def349b084a3bdbf4f2ab, type: 3}
+  gameOverMusic: {fileID: 4613318720824531667, guid: 63f95d7fa39def349b084a3bdbf4f2ab, type: 3}
+  hitSound: {fileID: 8454830308278413174, guid: 5bee6f3b27e6b414f8b02198477e5776, type: 3}
+  takeDamageSound: {fileID: 4914310591060037774, guid: b01ee3820a6af7540953cb718a8fec98, type: 3}
+  walkingSound: {fileID: 112766538106652658, guid: 447d376c638b11647adb8a8bb44b813d, type: 3}
   deathSound: {fileID: 0}
   powerUpSound: {fileID: 0}
   enemySound: {fileID: 0}
+  player: {fileID: 0}
+  gameOverMenu: {fileID: 0}
+  pauseMenu: {fileID: 0}
+  gameOverMessage: {fileID: 0}
+  finalScoreText: {fileID: 0}
   scoreText: {fileID: 0}
+  finalDistanceText: {fileID: 0}
+  distanceScoreText: {fileID: 0}
+  timer: {fileID: 0}
   currentScore: 0
   highScore: 0
   isGameRunning: 0
+  paused: 0
