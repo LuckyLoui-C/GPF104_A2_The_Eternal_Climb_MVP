@@ -28,7 +28,7 @@ public class PlatformCall : MonoBehaviour
                 if(willSpawnPowerUp)
                 {
                     int entitySpawnNum = Random.Range(0, enemiesToSpawn.Count);
-                    Instantiate(powersToSpawn[entitySpawnNum], new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+                    Instantiate(powersToSpawn[entitySpawnNum], spawnTrans.position, Quaternion.identity);
                 }
                 else
                 {
