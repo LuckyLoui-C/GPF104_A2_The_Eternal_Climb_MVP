@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D playerRb;
     private Animator animator;
     private Transform playerTransform;
+    public GameCartridge gameManager;
 
     [Header("Movement Settings")]
     public float moveSpeed; // The players moving speed which is set in the inspector
@@ -88,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetAxisRaw("Horizontal") != 0 && !animator.GetCurrentAnimatorStateInfo(0).IsName("CharacterAttack"))
         {
             animator.Play("CharacterWalkCycle");
+            gameManager.walkingSound.Play();
         }
         else if (Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Jump") != 1)
         {
@@ -115,7 +117,6 @@ public class PlayerMovement : MonoBehaviour
             jumpRequested = true;
         }
     }
-
     private void OnDrawGizmos()
     {
         // Draws a wireframe cube in place of the invisible Physics2D collision checks so that we can see their location and size in the editor

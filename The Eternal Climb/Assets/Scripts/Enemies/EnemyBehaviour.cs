@@ -7,6 +7,7 @@ public class EnemyBehaviour : MonoBehaviour
     [Header("Component References")]
     public Animator animator;
     public Projectile bomb;
+    public Projectile bullet;
     private GameCartridge gameManager;
     private PlayerHealth playerHealth;
     private Rigidbody2D enemyRb;
@@ -20,7 +21,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private bool isAttacking;
     private bool canAttack;
-    private float dropBombCountdown;
+    private float shootCountdown;
 
     private void Start()
     {
@@ -33,17 +34,17 @@ public class EnemyBehaviour : MonoBehaviour
 
         // Initialization of variables
         canAttack = true;
-        dropBombCountdown = 2.0f;
+        shootCountdown = 2.0f;
     }
 
     private void Update()
     {
-        dropBombCountdown -= Time.deltaTime;
+        shootCountdown -= Time.deltaTime;
         // If this enemy is type dragon, attack will be drop bombs periodically
-        if (this.CompareTag("Dragon") && dropBombCountdown <= 0.0f)
+        if (this.CompareTag("Dragon") && shootCountdown <= 0.0f)
         {
             DropBombs();
-            dropBombCountdown = 5.0f;
+            shootCountdown = 5.0f;
         }
     }
 
@@ -73,7 +74,7 @@ public class EnemyBehaviour : MonoBehaviour
     // After dropBombCountdown time, drragon drops another bomb
     public void DropBombs()
     {
-        Projectile clone = Instantiate(bomb, transform.position, transform.rotation);
+        Projectile bombClone = Instantiate(bomb, transform.position, transform.rotation);
 
         bomb.selfDestroyTime = 5;
         //Instantiate(dropItemPrefab, this.GetComponent<Transform>().transform); // Instantiate the bomb at the location of the dragon enemy
