@@ -41,12 +41,8 @@ public class PowerUpItem : MonoBehaviour
                 PickupSpeed(other);
             else if (this.name == "Axe")
             {
-<<<<<<< Updated upstream
                 playerArm.color = Color.red;
 
-=======
-                playerArm.sprite = axeSprite;
->>>>>>> Stashed changes
                 other.GetComponent<PlayerAttack>().attackPoints = 2;
                 Destroy(this.gameObject);
             }
